@@ -1,0 +1,48 @@
+.profile__button-add {
+  position: relative;
+
+  grid-area: add-button;
+  align-self: center;
+
+  width: 0;
+  height: 0;
+}
+
+.profile__button-add:before {
+  position: absolute;
+
+  top: -25px;
+  left: 0;
+
+  width: 150px;
+  height: 50px;
+
+  background-image: url(../../../images/add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  content: '';
+}
+
+.profile__button-add:after {
+  position: absolute;
+
+  top: -25px;
+  left: 0;
+
+  width: 150px;
+  height: 50px;
+
+  background-image: url(../../../images/rectangle-add.svg);
+  background-position: center;
+
+  content: '';
+}
+
+.profile__button-add:hover {
+  opacity: 0.8;
+}
+
+.profile__button-add:active {
+  opacity: 0.5;
+}

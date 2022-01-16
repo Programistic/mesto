@@ -1,0 +1,16 @@
+.profile__user-name {
+  grid-area: user-name;
+
+  max-width: 300px;
+
+  margin: 21px 0 0;
+  padding: 0;
+
+  color: #fff;
+
+  font: 500 42px/48px 'Inter', sans-serif;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

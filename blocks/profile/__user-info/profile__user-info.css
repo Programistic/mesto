@@ -1,0 +1,10 @@
+.profile__user-info {
+  grid-area: user-description;
+
+  margin: 0;
+  padding: 0;
+
+  color: #fff;
+
+  font: 400 18px/21.78px 'Inter', sans-serif;
+}

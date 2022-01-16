@@ -1,0 +1,42 @@
+/* Общие стили для страницы */
+@import url(../vendor/normalize.css);
+@import url(../fonts/font-inter.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/container/container.css);
+@import url(../blocks/logo/logo.css);
+@import url(../blocks/button/button.css);
+
+/* Стили для header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__line/header__line.css);
+
+/* Стили для profile */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__user-name/profile__user-name.css);
+@import url(../blocks/profile/__user-info/profile__user-info.css);
+@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__button-add/profile__button-add.css);
+
+/* Стили для cards */
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__title-container/card__title-container.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__button-heart/card__button-heart.css);
+
+/* Стили для footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__author/footer__author.css);
+
+/* Стили для popup */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__button-close/popup__button-close.css);
+@import url(../blocks/form/__heading/form__heading.css);
+@import url(../blocks/form/__fieldset/form__fieldset.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_role/_user-name/form__input_role_user-name.css);
+@import url(../blocks/form/__input/_role/_user-info/form__input_role_user-info.css);
+@import url(../blocks/form/__line/form__line.css);
+@import url(../blocks/form/__button-save/form__button-save.css);

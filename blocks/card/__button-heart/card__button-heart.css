@@ -1,0 +1,28 @@
+.card__button-heart {
+  position: relative;
+
+  margin: 5px 5px 0 0;
+
+  width: 0;
+  height: 0;
+}
+
+.card__button-heart:before {
+  position: absolute;
+
+  top: 0;
+  left: -22px;
+
+  width: 22px;
+  height: 19px;
+
+  background-image: url(../../../images/heart.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  content: '';
+}
+
+.card__button-heart:hover {
+  opacity: 0.6;
+}
