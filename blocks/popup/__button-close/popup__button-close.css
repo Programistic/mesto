@@ -1,26 +1,38 @@
 .popup__button-close {
-    position: relative;
+  position: relative;
+
+  width: 0;
+  height: 0;  
+}
   
-    width: 0;
-    height: 0;  
-  }
+.popup__button-close:before {
+  position: absolute;
   
+  bottom: 301px;
+  left: 402px;
+
+  width: 32px;
+  height: 32px;
+
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  content: '';
+}
+
+.popup__button-close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 580px) {
   .popup__button-close:before {
-    position: absolute;
-    
-    bottom: 316px;
-    left: 402px;
-  
-    width: 32px;
-    height: 32px;
-  
-    background-image: url(../../../images/close.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-  
-    content: '';
+    bottom: 313px;
+    left: 240px;
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url(../../../images/close-mobile.svg);
   }
-  
-  .popup__button-close:hover {
-    opacity: 0.6;
-  }
+}

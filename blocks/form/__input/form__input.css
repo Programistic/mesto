@@ -1,7 +1,13 @@
 .form__input {
-    padding: 30px 0 13px;
-    
-    font: 400 14px/16.94px 'Inter', sans-serif;
+  margin: 27px 0 12px;
+  padding: 0;
   
-    border: none;
-  }
+  font: 400 14px/16.94px 'Inter', sans-serif;
+
+  border: none;
+}
+
+.form__input:focus {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}

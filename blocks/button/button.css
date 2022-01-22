@@ -1,11 +1,11 @@
 .button {
-    display: block;
-  
-    padding: 0;
-  
-    border: 0;
-  
-    transition: opacity 0.15s ease;
-  
-    cursor: pointer;
-  }
+  display: block;
+
+  padding: 0;
+
+  border: 0;
+
+  transition: opacity 0.15s ease;
+
+  cursor: pointer;
+}

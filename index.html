@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./scripts/index.js"></script>
 </head>
 
 <body class="page">
@@ -14,7 +12,7 @@
   <div class="container">
 
     <header class="header">
-      <img class="logo" src="./images/logo-white.svg" alt="Mesto">
+      <img class="logo" src="./images/logo-white.svg" alt="Логотип Mesto">
       <div class="header__line"></div>
     </header>
 
@@ -22,79 +20,79 @@
 
       <section class="profile">
         <img class="profile__avatar" src="./images/Kusto.jpg" alt="Аватар">
-        <h1 class="profile__user-name">Жак-Ив Кусто</h1>
+        <div class="profile__inner-container">
+          <h1 class="profile__user-name">Жак-Ив Кусто</h1>
+          <button class="button profile__button-edit"></button>
+        </div>
         <p class="profile__user-info">Исследователь океана</p>
-        <button class="button profile__button-edit"></button>
-        <button class="button profile__button-add"></button>
+        <button class="button profile__button-add"></button> 
       </section>
 
-      <section class="cards">
+      <section class="card-repository">
+        <ul class="cards">
+          <li id="1" class="card">
+            <img class="card__image" src="./images/Алгаллробо Чили.jpg" alt="Деревянный мост в городе Альгарробо в Чили">
+            <div class="card__title-container">
+              <h2 class="card__title">Альгарробо</h2>
+              <button id="card-1" class="button card__button-heart"></button>
+            </div>
+          </li>
 
-        <div class="card">
-          <img class="card__image" src="./images/Алгаллробо Чили.jpg" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Алгаллробо</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
+          <li id="2" class="card">
+            <img class="card__image" src="./images/Верона.jpg" alt="Лес в провинции Верона в Италии">
+            <div class="card__title-container">
+              <h2 class="card__title">Верона</h2>
+              <button class="button card__button-heart"></button>
+            </div>
+          </li>
 
-        <div class="card">
-          <img class="card__image" src="./images/Верона Италия.jpg" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Верона</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
+          <li id="3" class="card">
+            <img class="card__image" src="./images/Амстердам.jpg" alt="Один из каналов в Амстердаме">
+            <div class="card__title-container">
+              <h2 class="card__title">Амстердам</h2>
+              <button class="button card__button-heart"></button>
+            </div>
+          </li>
 
-        <div class="card">
-          <img class="card__image" src="./images/Амстердам.jpg" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Амстердам</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
+          <li id="4" class="card">
+            <img class="card__image" src="./images/Бад-Пирмонт.jpg" alt="Лес в окрестностях города Бад-Пирмонт в Германии">
+            <div class="card__title-container">
+              <h2 class="card__title">Бад-Пирмонт</h2>
+              <button class="button card__button-heart"></button>
+            </div>
+          </li>
 
-        <div class="card">
-          <img class="card__image" src="./images/Бад-Пирмонт Германия.jpg" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Бад-Пирмонт</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
+          <li id="5" class="card">
+            <img class="card__image" src="./images/Маттерхорн.jpg" alt="Вид на гору Маттерхорн в Швейцарии">
+            <div class="card__title-container">
+              <h2 class="card__title">Маттерхорн</h2>
+              <button class="button card__button-heart"></button>
+            </div>
+          </li>
 
-        <div class="card">
-          <img class="card__image" src="./images/Цермат Маттерхом Швейцария.jpg" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Цермат Маттерхом</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img class="card__image" src="./images/Домбай.png" alt="">
-          <div class="card__title-container">
-            <h2 class="card__title">Домбай</h2>
-            <button class="button card__button-heart"></button>
-          </div>
-        </div>
-
+          <li id="6" class="card">
+            <img class="card__image" src="./images/Домбай.png" alt="Домбай">
+            <div class="card__title-container">
+              <h2 class="card__title">Домбай</h2>
+              <button class="button card__button-heart"></button>
+            </div>
+          </li>
+        </ul>
       </section>
 
       <div class="popup">
         <div class="popup__container">
-          <form class="form">
+          <form class="form" name="user-edit">
             <h2 class="form__heading">Редактировать профиль</h2>
             <fieldset class="form__fieldset">
-              <input class="form__input form__input_role_user-name" type="text" name="user-name" value="Жак-Ив Кусто">
+              <input class="form__input form__input_role_user-name" type="text" name="user-name" value="Жак-Ив Кусто" autocomplete="off">
               <div class="form__line"></div>
-              <input class="form__input form__input_role_user-info" type="text" name="user-info" value="Исследователь океана">
+              <input class="form__input form__input_role_user-info" type="text" name="user-info" value="Исследователь океана" autocomplete="off">
               <div class="form__line"></div>
             </fieldset>
-          
             <button class="button form__button-save" type="submit">Сохранить</button>
-
           </form>
-          <button class="button popup__button-close" type="submit"></button>
+          <button class="button popup__button-close" type="button"></button>
         </div>
       </div>
 
@@ -107,6 +105,8 @@
     </footer>
 
   </div>
+
+<script src="./scripts/index.js"></script>
 
 </body>
 
