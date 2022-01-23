@@ -9,8 +9,6 @@
 
 @media screen and (max-width: 580px) {
   .footer__author {
-    margin-left: calc((100% - 282px) / 2);
-    
     font: 400 14px/16.94px 'Inter', sans-serif;
   }
 }
