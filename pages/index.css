@@ -25,8 +25,7 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__inner-container/card__inner-container.css);
 @import url(../blocks/card/__title/card__title.css);
-@import url(../blocks/card/__button-heart/card__button-heart.css);
-@import url(../blocks/card/__button-heart/_liked/card__button-heart_liked.css);
+@import url(../blocks/card/__button-like/card__button-like.css);
 
 /* Стили для footer */
 @import url(../blocks/footer/footer.css);

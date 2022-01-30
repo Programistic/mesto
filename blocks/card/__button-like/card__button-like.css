@@ -1,10 +1,10 @@
-.card__button-heart {
+.card__button-like {
   position: relative;
   width: 0;
   height: 0;
 }
 
-.card__button-heart:before {
+.card__button-like:before {
   position: absolute;
   top: 7px;
   left: -22px;
@@ -16,6 +16,6 @@
   content: '';
 }
 
-.card__button-heart:hover {
-  transform: scale(1.07);
+.card__button-like:hover {
+  opacity: .5;
 }
