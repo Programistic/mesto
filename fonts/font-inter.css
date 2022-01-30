@@ -5,7 +5,6 @@
        local('Inter-Regular'),
        url(./Inter-Regular.woff2) format("woff2"),
        url(./Inter-Regular.woff) format("woff"),
-       url(./Inter-Regular.svg) format("svg");
 }
 
 @font-face {
@@ -15,7 +14,6 @@
        local('Inter-Medium'),
        url(./Inter-Medium.woff2) format("woff2"),
        url(./Inter-Medium.woff) format("woff"),
-       url(./Inter-Medium.svg) format("svg");
 }
 
 @font-face {
@@ -25,5 +23,4 @@
        local('Inter-Black'),
        url(./Inter-Black.woff2) format("woff2"),
        url(./Inter-Black.woff) format("woff"),
-       url(./Inter-Black.svg) format("svg");
 }
