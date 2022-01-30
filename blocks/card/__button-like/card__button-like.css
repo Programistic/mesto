@@ -1,19 +1,9 @@
 .card__button-like {
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-.card__button-like:before {
-  position: absolute;
-  top: 7px;
-  left: -22px;
+  align-self: center;
+  margin: 2px 0 0;
   width: 22px;
   height: 19px;
-  background-image: url(../../../images/icon-white-heart.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  content: '';
+  background: url(../../../images/icon-white-heart.svg) center no-repeat #fff;
 }
 
 .card__button-like:hover {
