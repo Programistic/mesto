@@ -1,5 +1,4 @@
 .profile__inner-container {
   display: flex;
-  
   grid-area: inner-container;
 }  

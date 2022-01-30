@@ -14,10 +14,8 @@
                          'inner-container'
                          'user-info'
                          'button-add';
-
     justify-items: center;
     align-items: end;
-
     padding: 0 19px;
   }
 }

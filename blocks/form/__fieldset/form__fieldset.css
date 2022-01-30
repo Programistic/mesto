@@ -1,9 +1,8 @@
 .form__fieldset {
-    margin: 19px 0 48px;
-    padding: 0;
-
-    border: 0;
-  }
+  margin: 19px 0 48px;
+  padding: 0;
+  border: 0;
+}
 
 @media screen and (max-width: 580px) {
   .form__fieldset {

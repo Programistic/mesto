@@ -7,7 +7,6 @@
   .logo {
     width: 104px;
     height: 24px;
-
     margin-left: calc((100% - 282px) / 2);
   }
 }

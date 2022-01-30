@@ -1,13 +1,9 @@
 .profile__user-name {
   max-width: 60%;
-
   margin: 20px 0 7px;
   padding: 0;
-
   color: #fff;
-
   font: 500 42px/48px 'Inter', sans-serif;
-
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -16,7 +12,6 @@
 @media screen and (max-width: 580px) {
   .profile__user-name {
     max-width: 230px;
-  
     font: 400 27px/37px 'Inter', sans-serif;
   }
 }

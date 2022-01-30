@@ -1,23 +1,18 @@
 .card__button-heart {
   position: relative;
-
   width: 0;
   height: 0;
 }
 
 .card__button-heart:before {
   position: absolute;
-
   top: 7px;
   left: -22px;
-
   width: 22px;
   height: 19px;
-
   background-image: url(../../../images/icon-white-heart.svg);
   background-repeat: no-repeat;
   background-position: center;
-
   content: '';
 }
 

@@ -1,40 +1,30 @@
 .profile__button-edit {
   position: relative;
-
   margin: 36px 0 0;
-
   width: 0;
   height: 0;
 }
 
 .profile__button-edit:before {
   position: absolute;
-
   top: 0;
   left: 18px;
-
   width: 24px;
   height: 24px;
-
   background-image: url(../../../images/edit.svg);
   background-repeat: no-repeat;
   background-position: center;
-
   content: '';
 }
 
 .profile__button-edit:after {
   position: absolute;
-
   top: 0;
   left: 18px;
-
   width: 24px;
   height: 24px;
-
   background-image: url(../../../images/rectangle-edit.svg);
   background-position: center;
-
   content: '';
 }
 
@@ -46,7 +36,6 @@
   .profile__button-edit:before {
     top: -5px;
     left: 10px;
-
     width: 18px;
     height: 18px;
 
@@ -56,10 +45,8 @@
   .profile__button-edit:after {
     top: -5px;
     left: 10px;
-
     width: 18px;
     height: 18px;
-
     background-image: url(../../../images/rectangle-edit-mobile.svg);
   }
 }
