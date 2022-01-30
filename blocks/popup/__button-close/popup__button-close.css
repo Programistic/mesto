@@ -1,29 +1,17 @@
 .popup__button-close {
-  position: relative;
-  width: 0;
-  height: 0;  
-}
-  
-.popup__button-close:before {
-  position: absolute;
-  bottom: 301px;
-  left: 402px;
+  grid-area: button-close;
+  justify-self: end;
   width: 32px;
   height: 32px;
-  background-image: url(../../../images/close.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  content: '';
+  background: url(../../../images/close.svg) center no-repeat;  
 }
 
 .popup__button-close:hover {
-  opacity: 0.6;
+  opacity: .6;
 }
 
 @media screen and (max-width: 580px) {
-  .popup__button-close:before {
-    bottom: 313px;
-    left: 240px;
+  .popup__button-close {
     width: 20px;
     height: 20px;
     background-image: url(../../../images/close-mobile.svg);
