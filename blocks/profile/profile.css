@@ -9,7 +9,7 @@
 @media screen and (max-width: 580px) {
   .profile {
     grid-template-columns: 1fr;
-    grid-template-rows: 120px 57px 31px 86px;
+    grid-template-rows: 120px 55px 25px 86px;
     grid-template-areas: 'avatar'
                          'inner-container'
                          'user-info'

@@ -5,8 +5,8 @@
 
 @media screen and (max-width: 580px) {
   .logo {
-    width: 104px;
-    height: 24px;
-    margin-left: calc((100% - 282px) / 2);
+    width: 103.74px;
+    height: 24.4px;
+    margin-left: calc(((100% - 282px) / 2) + 8px);
   }
 }
