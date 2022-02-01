@@ -3,7 +3,7 @@
   margin: 35px 0 0 18px;
   width: 24px;
   height: 24px;
-  background: url(../../../images/edit.svg) center no-repeat #000;
+  background: url(../../../images/edit.svg) center no-repeat rgba(0, 0, 0, 0);
   border: 1px solid #fff;
 }
 
