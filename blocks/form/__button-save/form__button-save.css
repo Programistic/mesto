@@ -3,7 +3,7 @@
   margin: 0;
   padding: 14px 0;
   color: #fff;
-  font: 400 18px/22px 'Inter', sans-serif;
+  font: 400 18px/22px 'Inter', 'Arial', sans-serif;
   background-color: #000;
   border-radius: 2px;
 }
@@ -14,6 +14,6 @@
 
 @media screen and (max-width: 580px) {
   .form__button-save {
-    font: 400 14px/17px 'Inter', sans-serif;
+    font: 400 14px/17px 'Inter', 'Arial', sans-serif;
   }
 }

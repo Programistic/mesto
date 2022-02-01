@@ -3,7 +3,7 @@
   margin: 0 30px 0 0;
   padding: 0;
   color: #fff;
-  font: 400 18px/21.78px 'Inter', sans-serif;
+  font: 400 18px/21.78px 'Inter', 'Arial', sans-serif;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -13,6 +13,6 @@
   .profile__user-info {
     max-width: 282px;
     margin: 0;
-    font: 400 14px/16.94px 'Inter', sans-serif;
+    font: 400 14px/16.94px 'Inter', 'Arial', sans-serif;
   }
 }
