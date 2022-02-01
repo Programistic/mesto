@@ -22,10 +22,6 @@ function popupClose() {
   popup.classList.remove('popup_opened');
 }
 
-/* Отслеживаем нажатие на соотв. кнопки */
-profileButtonEdit.addEventListener('click', popupOpen);
-popupButtonClose.addEventListener('click', popupClose);
-
 /* Функция перехватывает отправку формы и сохраняет данные из полей ввода */
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -33,6 +29,10 @@ function formSubmitHandler(evt) {
   profileUserInfo.textContent = popupUserInfo.value;
   popupClose();
 }
+
+/* Отслеживаем нажатие на соотв. кнопки */
+profileButtonEdit.addEventListener('click', popupOpen);
+popupButtonClose.addEventListener('click', popupClose);
 
 /* Отслеживаем событие отправки формы */
 popupForm.addEventListener('submit', formSubmitHandler);
