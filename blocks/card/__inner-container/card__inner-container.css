@@ -1,7 +1,7 @@
 .card__inner-container {
   display: flex;
   justify-content: space-between;
-  padding: 25px 20px 31px;
+  padding: 23px 20px 28px;
   border-radius: 0 0 10px 10px;
   background-color: #fff;
 }
