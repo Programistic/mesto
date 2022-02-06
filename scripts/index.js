@@ -27,7 +27,6 @@ const popupDisplayImage = popupDisplay.querySelector('.popup__image');
 const popupDisplayImageCaption = popupDisplay.querySelector('.popup__image-caption');
 const popupDisplayButtonClose = popupDisplay.querySelector('.popup__button-close');
 
-
 /* cards */
 const cards = document.querySelector('.cards');
 
@@ -69,11 +68,11 @@ const initialCards = [
 
 function render(el) {
   el.forEach((item) => {
-    createNewCard(item);
+    renderCard(item);
   });
 }
 
-function createNewCard(card) {
+function renderCard(card) {
   const newCard = cardTemplate.cloneNode(true);
   newCard.querySelector('.card__title').textContent = card.name;
   newCard.querySelector('.card__image').src = card.link;
@@ -114,7 +113,7 @@ function popupDisplayOpen(event) {
   popupDisplay.classList.add('popup_opened');
 }
 
-function popupDisplayClose(event) {
+function popupDisplayClose() {
   popupDisplay.classList.remove('popup_opened');
 }
 
