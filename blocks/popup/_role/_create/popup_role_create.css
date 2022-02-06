@@ -1,5 +1,5 @@
 .popup_role_create {
-  display: none;
+  display: grid;
   grid-template-columns: 1fr 40px 430px 40px 1fr;
   grid-template-rows: calc(((100% - 370px) / 2) - 20px) 40px 330px;
   grid-template-areas: '. . . . .'

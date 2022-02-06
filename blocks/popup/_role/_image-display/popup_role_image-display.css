@@ -1,5 +1,5 @@
 .popup_role_image-display {
-  display: none;
+  display: grid;
   grid-template-columns: 1fr 40px 75vw 40px 1fr;
   grid-template-rows: calc(((100% - 75vh) / 2) - 40px) 40px 75vh 24px;
   grid-template-areas: '. . . . .'
