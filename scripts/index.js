@@ -90,10 +90,17 @@ function handlerCreate() {
 
 function addListeners(el) {
   el.querySelector('.card__button-delete').addEventListener('click', handlerDelete);
+  el.querySelector('.card__button-like').addEventListener('click', handlerLike);
 }
 
 function handlerDelete(event) {
   event.target.closest('.card').remove();
+}
+
+function handlerLike(event) {
+  const card = event.target.closest('.card');
+  const buttonLike = card.querySelector('.card__button-like');
+  buttonLike.classList.toggle('card__button-like_liked');
 }
 
 /* Функции открытия и закрытия popup */
