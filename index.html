@@ -24,82 +24,42 @@
 
       <section class="card-repository">
         <ul class="cards">
-          <!--
-          <li class="card">
-            <img class="card__image" src="./images/Алгаллробо.jpg" alt="Деревянный мост в городе Альгарробо в Чили">
-            <div class="card__inner-container">
-              <h2 class="card__title">Альгарробо</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/Верона.jpg" alt="Лес в провинции Верона в Италии">
-            <div class="card__inner-container">
-              <h2 class="card__title">Верона</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/Амстердам.jpg" alt="Один из каналов в Амстердаме">
-            <div class="card__inner-container">
-              <h2 class="card__title">Амстердам</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/Бад-Пирмонт.jpg" alt="Лес в окрестностях города Бад-Пирмонт в Германии">
-            <div class="card__inner-container">
-              <h2 class="card__title">Бад-Пирмонт</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/Маттерхорн.jpg" alt="Вид на гору Маттерхорн в Швейцарии">
-            <div class="card__inner-container">
-              <h2 class="card__title">Маттерхорн</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/Домбай.png" alt="Домбай">
-            <div class="card__inner-container">
-              <h2 class="card__title">Домбай</h2>
-              <button class="button card__button-like" type="button" aria-label="Нравится"></button>
-            </div>
-          </li> -->
+          
         </ul>
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__author">
         &copy; 2022. Максим Давлеткильдеев
       </p>
     </footer>
 
-    <template class="template-card">
-      <li class="card">
-        <img class="card__image" src="" alt="">
-        <button class="button card__button-delete" type="button" aria-label="Удалить"></button>
-        <div class="card__inner-container">
-          <h2 class="card__title"></h2>
-          <button class="button card__button-like" type="button" aria-label="Симпатия"></button>
-        </div>
-      </li>
-    </template>
+  </div>
 
-    <div class="popup popup_role_edit">
-      <div class="popup__container">
-        <h2 class="popup__heading">Редактировать профиль</h2>
-        <form class="form" name="user-edit">
-          <fieldset class="form__fieldset">
-            <input class="form__input form__input_role_user-name" type="text" name="user-name" autocomplete="off">
-            <input class="form__input form__input_role_user-info" type="text" name="user-info" autocomplete="off">
-          </fieldset>
-          <button class="button form__button form__button-save" type="submit" aria-label="Сохранить">Сохранить</button>
-        </form>
+  <template class="template-card">
+    <li class="card">
+      <img class="card__image" src="" alt="">
+      <button class="button card__button-delete" type="button" aria-label="Удалить"></button>
+      <div class="card__inner-container">
+        <h2 class="card__title"></h2>
+        <button class="button card__button-like" type="button" aria-label="Симпатия"></button>
       </div>
-      <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
+    </li>
+  </template>
+
+  <div class="popup popup_role_edit">
+    <div class="popup__container">
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="form" name="user-edit">
+        <fieldset class="form__fieldset">
+          <input class="form__input form__input_role_user-name" type="text" name="user-name" autocomplete="off">
+          <input class="form__input form__input_role_user-info" type="text" name="user-info" autocomplete="off">
+        </fieldset>
+        <button class="button form__button form__button-save" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
     </div>
+    <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
   </div>
 
   <div class="popup popup_role_create">
@@ -115,9 +75,14 @@
     </div>
     <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
   </div>
-</div>
 
-<script src="./scripts/index.js"></script>
+  <div class="popup popup_role_image-display">
+    <img class="popup__image" src="" alt="">
+    <p class="popup__image-caption"></p>
+    <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
+  </div>
+
+  <script src="./scripts/index.js"></script>
 
 </body>
 </html>
