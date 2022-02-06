@@ -1,24 +1,32 @@
-/* Переменные для секции profile */
-let profile = document.querySelector('.profile');
-let profileUserName = profile.querySelector('.profile__user-name');
-let profileUserInfo = profile.querySelector('.profile__user-info');
-let profileButtonEdit = profile.querySelector('.profile__button-edit');
-let profileButtonAdd = profile.querySelector('.profile__button-add');
+/* profile */
+const profile = document.querySelector('.profile');
+const profileUserName = profile.querySelector('.profile__user-name');
+const profileUserInfo = profile.querySelector('.profile__user-info');
+const profileButtonEdit = profile.querySelector('.profile__button-edit');
+const profileButtonAdd = profile.querySelector('.profile__button-add');
 
-/* Переменные для элемента popup */
-let popup = document.querySelector('.popup');
-let popupEdit = document.querySelector('.popup_role_edit');
-let popupCreate = document.querySelector('.popup_role_create');
-let popupForm = popup.querySelector('.form');
-let popupUserName = popupForm.querySelector('.form__input_role_user-name');
-let popupUserInfo = popupForm.querySelector('.form__input_role_user-info');
-let popupButtonSave = popupForm.querySelector('.form__button-save');
-let popupButtonCreate = popupForm.querySelector('.form__button-create');
-let popupEditButtonClose = popupEdit.querySelector('.popup__button-close');
-let popupCreateButtonClose = popupCreate.querySelector('.popup__button-close');
+/* popup-edit */
+const popupEdit = document.querySelector('.popup_role_edit');
+const popupEditForm = popupEdit.querySelector('.form');
+const popupEditUserName = popupEdit.querySelector('.form__input_role_user-name');
+const popupEditUserInfo = popupEdit.querySelector('.form__input_role_user-info');
+const popupEditButtonSave = popupEdit.querySelector('.form__button-save');
+const popupEditButtonClose = popupEdit.querySelector('.popup__button-close');
 
-const cardTemplate = document.querySelector('#card').content;
+/* popup-create */
+const popupCreate = document.querySelector('.popup_role_create');
+const popupCreateForm = popupCreate.querySelector('.form');
+const popupCreatePlaceName = popupCreate.querySelector('.form__input_role_place-name');
+const popupCreatePlaceImage = popupCreate.querySelector('.form__input_role_place-image');
+const popupCreateButtonCreate = popupCreate.querySelector('.form__button-create');
+const popupCreateButtonClose = popupCreate.querySelector('.popup__button-close');
+
+/* cards */
 const cards = document.querySelector('.cards');
+
+/* card-template */
+const cardTemplate = document.querySelector('.template-card').content;
+
 const initialCards = [
   {
     name: 'Альгарробо',
@@ -52,17 +60,38 @@ const initialCards = [
   }
 ];
 
-function render() {
-  initialCards.forEach(createNewCard);
+function render(el) {
+  el.forEach((item) => {
+    createNewCard(item);
+  });
 }
 
-render();
+function createNewCard(card) {
+  const newCard = cardTemplate.cloneNode(true);
+  newCard.querySelector('.card__title').textContent = card.name;
+  newCard.querySelector('.card__image').src = card.link;
+  newCard.querySelector('.card__image').alt = card.alt;
+  cards.prepend(newCard);
+}
+
+render(initialCards);
+
+function handlerCreate() {
+  const newCard = [
+    {
+      name: popupCreatePlaceName.value,
+      link: popupCreatePlaceImage.value,
+      alt: ''
+    }
+  ]; 
+  render(newCard);
+}
 
 /* Функции открытия и закрытия popup */
 function popupEditOpen() {
   popupEdit.classList.add('popup_opened');
-  popupUserName.value = profileUserName.textContent;
-  popupUserInfo.value = profileUserInfo.textContent;
+  popupEditUserName.value = profileUserName.textContent;
+  popupEditUserInfo.value = profileUserInfo.textContent;
 }
 
 function popupCreateOpen() {
@@ -77,12 +106,16 @@ function popupCreateClose() {
   popupCreate.classList.remove('popup_opened');
 }
 
-/* Функция перехватывает отправку формы и сохраняет данные из полей ввода */
-function formSubmitHandler(evt) {
+/* Функции перехватывают отправку формы и сохраняют данные из полей ввода */
+function formEditSubmitHandler(evt) {
   evt.preventDefault();
-  profileUserName.textContent = popupUserName.value;
-  profileUserInfo.textContent = popupUserInfo.value;
+  profileUserName.textContent = popupEditUserName.value;
+  profileUserInfo.textContent = popupEditUserInfo.value;
   popupEditClose();
+}
+
+function formCreateSubmitHandler(evt) {
+  evt.preventDefault();
   popupCreateClose();
 }
 
@@ -92,26 +125,8 @@ profileButtonAdd.addEventListener('click', popupCreateOpen);
 popupEditButtonClose.addEventListener('click', popupEditClose);
 popupCreateButtonClose.addEventListener('click', popupCreateClose);
 
-/* Отслеживаем событие отправки формы */
-popupForm.addEventListener('submit', formSubmitHandler);
-
-function createNewCard(initialCards) {
-  const newCard = cardTemplate.cloneNode(true);
-  newCard.querySelector('.card__title').textContent = initialCards.name;
-  newCard.querySelector('.card__image').src = initialCards.link;
-  newCard.querySelector('.card__image').alt = initialCards.alt;
-  cards.append(newCard);
-}
-
-function handlerAdd() {
-  
-}
-
-function handlerEdit() {
-  
-}
-
-function addListeners(el) {
-  //el.querySelector('.delete').addEventListener('click', handlerDelete);
-}
+/* Отслеживаем события */
+popupEditForm.addEventListener('submit', formEditSubmitHandler);
+popupCreateForm.addEventListener('submit', formCreateSubmitHandler);
+popupCreateButtonCreate.addEventListener('click', handlerCreate);
 
