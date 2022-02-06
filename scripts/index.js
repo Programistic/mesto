@@ -128,6 +128,8 @@ function popupEditClose() {
 }
 
 function popupCreateOpen() {
+  popupCreatePlaceName.value = '';
+  popupCreatePlaceImage.value = '';
   popupCreate.classList.add('popup_opened');
 }
 
