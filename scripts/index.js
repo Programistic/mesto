@@ -21,6 +21,13 @@ const popupCreatePlaceImage = popupCreate.querySelector('.form__input_role_place
 const popupCreateButtonCreate = popupCreate.querySelector('.form__button-create');
 const popupCreateButtonClose = popupCreate.querySelector('.popup__button-close');
 
+/* popup-image-display */
+const popupDisplay = document.querySelector('.popup_role_image-display');
+const popupDisplayImage = popupDisplay.querySelector('.popup__image');
+const popupDisplayImageCaption = popupDisplay.querySelector('.popup__image-caption');
+const popupDisplayButtonClose = popupDisplay.querySelector('.popup__button-close');
+
+
 /* cards */
 const cards = document.querySelector('.cards');
 
@@ -88,11 +95,6 @@ function handlerCreate() {
   render(newCard);
 }
 
-function addListeners(el) {
-  el.querySelector('.card__button-delete').addEventListener('click', handlerDelete);
-  el.querySelector('.card__button-like').addEventListener('click', handlerLike);
-}
-
 function handlerDelete(event) {
   event.target.closest('.card').remove();
 }
@@ -103,26 +105,37 @@ function handlerLike(event) {
   buttonLike.classList.toggle('card__button-like_liked');
 }
 
-/* Функции открытия и закрытия popup */
-function popupEditOpen() {
-  popupEdit.classList.add('popup_opened');
-  popupEditUserName.value = profileUserName.textContent;
-  popupEditUserInfo.value = profileUserInfo.textContent;
+function popupDisplayOpen(event) {
+  const card = event.target.closest('.card');
+  const cardImage = card.querySelector('.card__image');
+  const cardTitle = card.querySelector('.card__title');
+  popupDisplayImage.src = cardImage.src;
+  popupDisplayImageCaption.textContent = cardTitle.textContent;
+  popupDisplay.classList.add('popup_opened');
 }
 
-function popupCreateOpen() {
-  popupCreate.classList.add('popup_opened');
+function popupDisplayClose(event) {
+  popupDisplay.classList.remove('popup_opened');
+}
+
+function popupEditOpen() {
+  popupEditUserName.value = profileUserName.textContent;
+  popupEditUserInfo.value = profileUserInfo.textContent;
+  popupEdit.classList.add('popup_opened');
 }
 
 function popupEditClose() {
   popupEdit.classList.remove('popup_opened');
 }
 
+function popupCreateOpen() {
+  popupCreate.classList.add('popup_opened');
+}
+
 function popupCreateClose() {
   popupCreate.classList.remove('popup_opened');
 }
 
-/* Функции перехватывают отправку формы и сохраняют данные из полей ввода */
 function formEditSubmitHandler(evt) {
   evt.preventDefault();
   profileUserName.textContent = popupEditUserName.value;
@@ -135,14 +148,17 @@ function formCreateSubmitHandler(evt) {
   popupCreateClose();
 }
 
-/* Отслеживаем нажатие на соотв. кнопки */
+function addListeners(el) {
+  el.querySelector('.card__button-delete').addEventListener('click', handlerDelete);
+  el.querySelector('.card__button-like').addEventListener('click', handlerLike);
+  el.querySelector('.card__image').addEventListener('click', popupDisplayOpen);
+}
+
 profileButtonEdit.addEventListener('click', popupEditOpen);
 profileButtonAdd.addEventListener('click', popupCreateOpen);
 popupEditButtonClose.addEventListener('click', popupEditClose);
 popupCreateButtonClose.addEventListener('click', popupCreateClose);
-
-/* Отслеживаем события */
+popupDisplayButtonClose.addEventListener('click', popupDisplayClose);
 popupEditForm.addEventListener('submit', formEditSubmitHandler);
 popupCreateForm.addEventListener('submit', formCreateSubmitHandler);
 popupCreateButtonCreate.addEventListener('click', handlerCreate);
-
