@@ -71,6 +71,7 @@ function createNewCard(card) {
   newCard.querySelector('.card__title').textContent = card.name;
   newCard.querySelector('.card__image').src = card.link;
   newCard.querySelector('.card__image').alt = card.alt;
+  addListeners(newCard);
   cards.prepend(newCard);
 }
 
@@ -85,6 +86,14 @@ function handlerCreate() {
     }
   ]; 
   render(newCard);
+}
+
+function addListeners(el) {
+  el.querySelector('.card__button-delete').addEventListener('click', handlerDelete);
+}
+
+function handlerDelete(event) {
+  event.target.closest('.card').remove();
 }
 
 /* Функции открытия и закрытия popup */
