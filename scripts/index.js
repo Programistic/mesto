@@ -57,7 +57,7 @@ function addNewCard() {
     {
       name: popupCreatePlaceName.value,
       link: popupCreatePlaceImage.value,
-      alt: ''
+      alt: popupCreatePlaceName.value
     }
   ]; 
   renderCard(newCard);
