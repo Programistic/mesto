@@ -51,12 +51,18 @@
   <div class="popup popup_role_edit">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="form" name="user-edit">
+      <form class="form" name="user-edit" novalidate>
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_role_user-name" type="text" name="user-name" autocomplete="off">
-          <input class="form__input form__input_role_user-info" type="text" name="user-info" autocomplete="off">
+          <div class="form__field">
+            <input id="user-name-input" class="form__input form__input_role_user-name" type="text" name="user-name" autocomplete="off" minlength="2" maxlength="40" required>
+            <p class="form__input-error user-name-input-error"></p>
+          </div>
+          <div class="form__field">
+            <input id="user-info-input" class="form__input form__input_role_user-info" type="text" name="user-info" autocomplete="off" minlength="2" maxlength="200" required>
+            <p class="form__input-error user-info-input-error"></p>
+          </div>
         </fieldset>
-        <button class="button form__button form__button-save" type="submit" aria-label="Сохранить">Сохранить</button>
+        <button class="form__submit button form__button form__button-save" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
     <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
@@ -65,12 +71,18 @@
   <div class="popup popup_role_create">
     <div class="popup__container">
       <h2 class="popup__heading">Новое место</h2>
-      <form class="form" name="place-add">
+      <form class="form" name="place-add" novalidate>
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_role_place-name" type="text" name="place-name" autocomplete="off" placeholder="Название">
-          <input class="form__input form__input_role_place-image" type="text" name="place-image" autocomplete="off" placeholder="Ссылка на картинку">
+          <div class="form__field">
+            <input id="place-name-input" class="form__input form__input_role_place-name" type="text" name="place-name" autocomplete="off" placeholder="Название" minlength="2" maxlength="30" required>
+            <p class="form__input-error place-name-input-error"></p>
+          </div>
+          <div class="form__field">
+            <input id="place-image-input" class="form__input form__input_role_place-image" type="url" name="place-image" autocomplete="off" placeholder="Ссылка на картинку" required>
+            <p class="form__input-error place-image-input-error"></p>
+          </div>
         </fieldset>
-        <button class="button form__button form__button-create" type="submit" aria-label="Создать">Создать</button>
+        <button class="form__submit button form__button form__button-create" type="submit" aria-label="Создать">Создать</button>
       </form>
     </div>
     <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
