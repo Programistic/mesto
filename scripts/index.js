@@ -83,6 +83,16 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+function closeByClickOverlay(evt) {
+  if (!evt.target.closest('.popup__container')) {
+    closePopup(popupEdit);
+    closePopup(popupCreate);
+  } 
+  if (!evt.target.closest('.popup__image') && !evt.target.closest('.popup__image-caption')) {
+    closePopup(popupDisplay);
+  }
+}
+
 function resetFormAddCard() {
   popupCreatePlaceName.value = '';
   popupCreatePlaceImage.value = '';
@@ -140,5 +150,9 @@ profileButtonAdd.addEventListener('click', () => {initialisePopupCreate(); openP
 popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
 popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
 popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
+popupEdit.addEventListener('click', closeByClickOverlay);
+popupCreate.addEventListener('click', closeByClickOverlay);
+popupDisplay.addEventListener('click', closeByClickOverlay);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
+
