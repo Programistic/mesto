@@ -36,7 +36,7 @@ const cardTemplate = document.querySelector('.template-card').content;
 /* добавление элемента в DOM в начало списка cards */
 function renderCard(element) {
   cards.prepend(element);
-}
+};
 
 /* создание новой карточки по шаблону */
 function createCard(card) {
@@ -48,14 +48,14 @@ function createCard(card) {
   newCardImage.alt = card.alt;
   addListeners(newCard, newCardImage, card);
   return newCard;
-}
+};
 
 /* создание карточки на основе имеющегося массива данных и добавление её в DOM  */
 function addCardFromArray(array) {
   array.forEach((item) => {
     renderCard(createCard(item));
   });
-}
+};
 
 /* создание карточки на основе данных из полей ввода и добавление её в DOM  */
 function addNewCard() {
@@ -65,69 +65,76 @@ function addNewCard() {
     alt: popupCreatePlaceName.value
   };
   renderCard(createCard(card));
-}
+};
 
 function deleteCard(event) {
   event.target.closest('.card').remove();
-}
+};
 
 function likeCard(event) {
   event.target.classList.toggle('card__button-like_liked');
-}
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-}
+};
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-}
+};
 
-function closeByClickOverlay(evt) {
-  if (!evt.target.closest('.popup__container')) {
+function closeByClickOverlay(event) {
+  if (!event.target.closest('.popup__container')) {
     closePopup(popupEdit);
     closePopup(popupCreate);
   } 
-  if (!evt.target.closest('.popup__image') && !evt.target.closest('.popup__image-caption')) {
+  if (!event.target.closest('.popup__image') && !event.target.closest('.popup__image-caption')) {
     closePopup(popupDisplay);
   }
-}
+};
+
+function closeByClickEsc(event) {
+  if (event.key === 'Escape') {
+    closePopup(popupEdit);
+    closePopup(popupCreate);
+  }
+};
 
 function resetFormAddCard() {
   popupCreatePlaceName.value = '';
   popupCreatePlaceImage.value = '';
-}
+};
 
 /* инициализация полей формы редактирования профиля данными из профайла */
 function initialisePopupEdit() {
   popupEditUserName.value = profileUserName.textContent;
   popupEditUserInfo.value = profileUserInfo.textContent;
-}
+};
 
 function initialisePopupCreate() {
   popupCreatePlaceName.value = '';
   popupCreatePlaceImage.value = '';
-}
+};
 
 /* инициализация профайла данными из полей формы редактирования профиля*/
 function initialiseProfile() {
   profileUserName.textContent = popupEditUserName.value;
   profileUserInfo.textContent = popupEditUserInfo.value;
-}
+};
 
 /* инициализация попап показа фотографии данными из карточки */
 function initialisePopupDisplay(name, link) {
   popupDisplayImage.src = link;
   popupDisplayImageCaption.textContent = name;
   popupDisplayImage.alt = name;
-}
+};
 
 /* обработка события submit для формы редактирования профиля */
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   initialiseProfile();
   closePopup(popupEdit);
-}
+};
 
 /* обработка события submit для формы создания новой карточки */
 function handleCreateFormSubmit(evt) {
@@ -135,13 +142,13 @@ function handleCreateFormSubmit(evt) {
   addNewCard();
   resetFormAddCard();
   closePopup(popupCreate);
-}
+};
 
 function addListeners(newCard, newCardImage, card) {
   newCard.querySelector('.card__button-delete').addEventListener('click', deleteCard);
   newCard.querySelector('.card__button-like').addEventListener('click', likeCard);
   newCardImage.addEventListener('click', () => {initialisePopupDisplay(card.name, card.link); openPopup(popupDisplay)});
-}
+};
 
 addCardFromArray(initialCards);
 
@@ -153,6 +160,8 @@ popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay)
 popupEdit.addEventListener('click', closeByClickOverlay);
 popupCreate.addEventListener('click', closeByClickOverlay);
 popupDisplay.addEventListener('click', closeByClickOverlay);
+popupEdit.addEventListener('keydown', closeByClickEsc);
+popupCreate.addEventListener('keydown', closeByClickEsc);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
 
