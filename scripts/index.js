@@ -153,8 +153,8 @@ profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(
 popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
 popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
 popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
-popupEdit.addEventListener('click', closeByClickOverlay);
-popupCreate.addEventListener('click', closeByClickOverlay);
-popupDisplay.addEventListener('click', closeByClickOverlay);
+popupEdit.addEventListener('mousedown', closeByClickOverlay);
+popupCreate.addEventListener('mousedown', closeByClickOverlay);
+popupDisplay.addEventListener('mousedown', closeByClickOverlay);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
