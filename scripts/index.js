@@ -78,13 +78,13 @@ function likeCard(event) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   popup.addEventListener('click', (event) => closeByClickOverlay(event));
-  popup.addEventListener('keydown', (event) => closeByPressEsc(event, popup));
+  document.addEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('click', (event) => closeByClickOverlay(event));
-  popup.removeEventListener('keydown', (event) => closeByPressEsc(event, popup));
+  document.removeEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closeByClickOverlay(event) {
@@ -112,11 +112,6 @@ function resetFormAddCard() {
 function initialisePopupEdit() {
   popupEditUserName.value = profileUserName.textContent;
   popupEditUserInfo.value = profileUserInfo.textContent;
-};
-
-function initialisePopupCreate() {
-  popupCreatePlaceName.value = '';
-  popupCreatePlaceImage.value = '';
 };
 
 /* инициализация профайла данными из полей формы редактирования профиля*/
@@ -156,10 +151,9 @@ function addListeners(newCard, newCardImage, card) {
 addCardFromArray(initialCards);
 
 profileButtonEdit.addEventListener('click', () => {initialisePopupEdit(); openPopup(popupEdit); enableValidation(popupEdit)});
-profileButtonAdd.addEventListener('click', () => {initialisePopupCreate(); openPopup(popupCreate); enableValidation(popupCreate)});
+profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(popupCreate); enableValidation(popupCreate)});
 popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
 popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
 popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
-
