@@ -11,7 +11,6 @@ const popupEditForm = popupEdit.querySelector('.form');
 const popupEditUserName = popupEdit.querySelector('.form__input_role_user-name');
 const popupEditUserInfo = popupEdit.querySelector('.form__input_role_user-info');
 const popupEditButtonSave = popupEdit.querySelector('.form__button-save');
-const popupEditButtonClose = popupEdit.querySelector('.popup__button-close');
 
 /* popup-create */
 const popupCreate = document.querySelector('.popup_role_create');
@@ -19,13 +18,11 @@ const popupCreateForm = popupCreate.querySelector('.form');
 const popupCreatePlaceName = popupCreate.querySelector('.form__input_role_place-name');
 const popupCreatePlaceImage = popupCreate.querySelector('.form__input_role_place-image');
 const popupCreateButtonCreate = popupCreate.querySelector('.form__button-create');
-const popupCreateButtonClose = popupCreate.querySelector('.popup__button-close');
 
 /* popup-image-display */
 const popupDisplay = document.querySelector('.popup_role_image-display');
 const popupDisplayImage = popupDisplay.querySelector('.popup__image');
 const popupDisplayImageCaption = popupDisplay.querySelector('.popup__image-caption');
-const popupDisplayButtonClose = popupDisplay.querySelector('.popup__button-close');
 
 /* cards */
 const cards = document.querySelector('.cards');
@@ -89,8 +86,9 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 };
 
-function closeByClickOverlay(event) {
-  if (event.target === event.currentTarget) {
+/* закрытие popup по клику на крестик или оверлэй */
+function closeByClick(event) {
+  if (event.target === event.currentTarget || event.target.classList.contains('popup__button-close')) {
     closePopup(document.querySelector('.popup_opened'));
   }
 };
@@ -154,11 +152,8 @@ addCardFromArray(initialCards);
 
 profileButtonEdit.addEventListener('click', () => {initialisePopupEdit(); openPopup(popupEdit); enableValidation(popupEdit)});
 profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(popupCreate); enableValidation(popupCreate)});
-popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
-popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
-popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
-popupEdit.addEventListener('mousedown', closeByClickOverlay);
-popupCreate.addEventListener('mousedown', closeByClickOverlay);
-popupDisplay.addEventListener('mousedown', closeByClickOverlay);
+popupEdit.addEventListener('mousedown', closeByClick);
+popupCreate.addEventListener('mousedown', closeByClick);
+popupDisplay.addEventListener('mousedown', closeByClick);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
