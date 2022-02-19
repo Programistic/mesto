@@ -76,28 +76,32 @@ function likeCard(event) {
 };
 
 function openPopup(popup) {
+  document.addEventListener('keydown', function (event) {
+    closeByPressEsc(event);
+  });
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closePopup(popup) {
+  document.removeEventListener('keydown', function (event) {
+    closeByPressEsc(event);
+  });
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closeByClickOverlay(event) {
-  if (!event.target.closest('.popup__container')) {
-    closePopup(popupEdit);
-    closePopup(popupCreate);
-  } 
-  if (!event.target.closest('.popup__image') && !event.target.closest('.popup__image-caption')) {
-    closePopup(popupDisplay);
+  if (event.target === event.currentTarget) {
+    closePopup(document.querySelector('.popup_opened'));
   }
 };
 
-function closeByPressEsc(event, popup) {
+function closeByPressEsc(event) {
+  console.log(event.target);
+  console.log(event.currentTarget);
   if (event.key === 'Escape') {
-    closePopup(popup);
+    closePopup(popupEdit);
+    closePopup(popupCreate);
+    closePopup(popupDisplay);
   }
 };
 
