@@ -77,13 +77,11 @@ function likeCard(event) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('click', (event) => closeByClickOverlay(event));
   document.addEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', (event) => closeByClickOverlay(event));
   document.removeEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
@@ -155,5 +153,8 @@ profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(
 popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
 popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
 popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
+popupEdit.addEventListener('click', closeByClickOverlay);
+popupCreate.addEventListener('click', closeByClickOverlay);
+popupDisplay.addEventListener('click', closeByClickOverlay);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
