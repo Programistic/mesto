@@ -77,10 +77,14 @@ function likeCard(event) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', (event) => closeByClickOverlay(event));
+  popup.addEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', (event) => closeByClickOverlay(event));
+  popup.removeEventListener('keydown', (event) => closeByPressEsc(event, popup));
 };
 
 function closeByClickOverlay(event) {
@@ -93,10 +97,9 @@ function closeByClickOverlay(event) {
   }
 };
 
-function closeByClickEsc(event) {
+function closeByPressEsc(event, popup) {
   if (event.key === 'Escape') {
-    closePopup(popupEdit);
-    closePopup(popupCreate);
+    closePopup(popup);
   }
 };
 
@@ -130,15 +133,15 @@ function initialisePopupDisplay(name, link) {
 };
 
 /* обработка события submit для формы редактирования профиля */
-function handleEditFormSubmit(evt) {
-  evt.preventDefault();
+function handleEditFormSubmit(event) {
+  event.preventDefault();
   initialiseProfile();
   closePopup(popupEdit);
 };
 
 /* обработка события submit для формы создания новой карточки */
-function handleCreateFormSubmit(evt) {
-  evt.preventDefault();
+function handleCreateFormSubmit(event) {
+  event.preventDefault();
   addNewCard();
   resetFormAddCard();
   closePopup(popupCreate);
@@ -157,11 +160,6 @@ profileButtonAdd.addEventListener('click', () => {initialisePopupCreate(); openP
 popupEditButtonClose.addEventListener('click', () => closePopup(popupEdit));
 popupCreateButtonClose.addEventListener('click', () => closePopup(popupCreate));
 popupDisplayButtonClose.addEventListener('click', () => closePopup(popupDisplay));
-popupEdit.addEventListener('click', closeByClickOverlay);
-popupCreate.addEventListener('click', closeByClickOverlay);
-popupDisplay.addEventListener('click', closeByClickOverlay);
-popupEdit.addEventListener('keydown', closeByClickEsc);
-popupCreate.addEventListener('keydown', closeByClickEsc);
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupCreateForm.addEventListener('submit', handleCreateFormSubmit);
 

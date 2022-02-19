@@ -3,8 +3,8 @@
 /* включение валидации попапа */
 const enableValidation = (popup) => {
   const formElement = popup.querySelector('.form');
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
+    formElement.addEventListener('submit', (event) => {
+      event.preventDefault();
     });
     setEventListeners(formElement); // устанавливаем слушатель событий на каждое поле ввода на выбранной форме
 };
