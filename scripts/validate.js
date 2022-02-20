@@ -1,59 +1,66 @@
 /* В файле validate.js осуществляется проверка валидности полей ввода во всплывающих окнах - popup */
 
 /* включение валидации попапа */
-const enableValidation = (popup) => {
-  const formElement = popup.querySelector('.form');
+const enableValidation = (valueObject) => {
+  const formInput = valueObject.inputSelector;
+  const formSubmit = valueObject.submitButtonSelector;
+  const formInputError = valueObject.inputErrorClass;
+  const formInputErrorActive = valueObject.errorClass;
+  const buttonInactive = valueObject.inactiveButtonClass;
+  const formList = Array.from(document.querySelectorAll(valueObject.formSelector));
+  formList.forEach((formElement) => {
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
     });
-    setEventListeners(formElement); // устанавливаем слушатель событий на каждое поле ввода на выбранной форме
+    setEventListeners(formElement, formInput, formSubmit, formInputError, formInputErrorActive, buttonInactive); // устанавливаем слушатель событий на каждое поле ввода на выбранной форме
+  });
 };
 
 /* проверка валидности полей ввода и изменение статуса кнопки отправки формы */
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input')); // выбираем все поля ввода на переданной в функцию форме
-  const buttonElement = formElement.querySelector('.form__submit'); // выбираем элемент отправки формы на переданной в функцию форме
+const setEventListeners = (formElement, formInput, formSubmit, formInputError, formInputErrorActive, buttonInactive) => {
+  const inputList = Array.from(formElement.querySelectorAll(formInput)); // выбираем все поля ввода на переданной в функцию форме
+  const buttonElement = formElement.querySelector(formSubmit); // выбираем элемент отправки формы на переданной в функцию форме
   inputList.forEach((inputElement) => { // здесь создаём inputElement - поле ввода
-    hideInputError(formElement, inputElement); // скрываем сообщения об ошиках (красноту)
-    toggleButtonState(inputList, buttonElement); // если не валидно - меняем статус кнопки отправки формы на неактивную
+    hideInputError(formElement, inputElement, formInputError, formInputErrorActive); // скрываем сообщения об ошиках (красноту)
+    toggleButtonState(inputList, buttonElement, buttonInactive); // если не валидно - меняем статус кнопки отправки формы на неактивную
     inputElement.addEventListener('input', () => { // вешаем слушатель событий на каждое поле ввода на форме
-      checkInputValidity(formElement, inputElement); // проверяем валидность после ввода каждого символа
-      toggleButtonState(inputList, buttonElement); // если не валидно - меняем статус кнопки отправки формы на неактивную
+      checkInputValidity(formElement, inputElement, formInputError, formInputErrorActive); // проверяем валидность после ввода каждого символа
+      toggleButtonState(inputList, buttonElement, buttonInactive); // если не валидно - меняем статус кнопки отправки формы на неактивную
     });
   });
 };
 
 /* проверка валидности вводимых данных */
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, formInputError, formInputErrorActive) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage); // показываем сообщения об ошибках
+    showInputError(formElement, inputElement, inputElement.validationMessage, formInputError, formInputErrorActive); // показываем сообщения об ошибках
   } else {
-    hideInputError(formElement, inputElement); // скрываем сообщения об ошибках
+    hideInputError(formElement, inputElement, formInputError, formInputErrorActive); // скрываем сообщения об ошибках
   }
 };
 
 /* вывод сообщения об ошибке ввода плюс красная линия под полем ввода */
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, formInputError, formInputErrorActive) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('form__input_type_error') // подчёркиваем красным поле ввода
+  inputElement.classList.add(formInputError) // подчёркиваем красным поле ввода
   errorElement.textContent = errorMessage; // текст сообщения об ошибке ввода
-  errorElement.classList.add('form__input-error_active'); // показываем сообщение об ошибке ввода
+  errorElement.classList.add(formInputErrorActive); // показываем сообщение об ошибке ввода
 };
 
 /* скрываем сообщение об ошибке и убираем красную линию под полем ввода */
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, formInputError, formInputErrorActive) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('form__input_type_error'); // убираем красное подчёркивание поля ввода
-  errorElement.classList.remove('form__input-error_active'); // убираем сообщение об ошибке ввода
+  inputElement.classList.remove(formInputError); // убираем красное подчёркивание поля ввода
+  errorElement.classList.remove(formInputErrorActive); // убираем сообщение об ошибке ввода
   errorElement.textContent = ''; // очищаем текст сообщения об ошибке ввода
 };
 
 /* меняем статус кнопки отправки формы (активная - неактивная) */
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, buttonInactive) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('button_inactive');
+    buttonElement.classList.add(buttonInactive);
   } else {
-    buttonElement.classList.remove('button_inactive');
+    buttonElement.classList.remove(buttonInactive);
   }
 };
 
@@ -63,3 +70,12 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   });
 };
+
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+});

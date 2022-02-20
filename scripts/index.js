@@ -94,8 +94,8 @@ function closeByClick(event) {
 };
 
 function closeByPressEsc(event) {
-  console.log(event.target);
-  console.log(event.currentTarget);
+  //console.log(event.target);
+  //console.log(event.currentTarget);
   if (event.key === 'Escape') {
     closePopup(popupEdit);
     closePopup(popupCreate);
@@ -150,8 +150,8 @@ function addListeners(newCard, newCardImage, card) {
 
 addCardFromArray(initialCards);
 
-profileButtonEdit.addEventListener('click', () => {initialisePopupEdit(); openPopup(popupEdit); enableValidation(popupEdit)});
-profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(popupCreate); enableValidation(popupCreate)});
+profileButtonEdit.addEventListener('click', () => {initialisePopupEdit(); openPopup(popupEdit)});
+profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); openPopup(popupCreate)});
 popupEdit.addEventListener('mousedown', closeByClick);
 popupCreate.addEventListener('mousedown', closeByClick);
 popupDisplay.addEventListener('mousedown', closeByClick);
