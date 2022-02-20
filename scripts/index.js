@@ -73,16 +73,12 @@ function likeCard(event) {
 };
 
 function openPopup(popup) {
-  document.addEventListener('keydown', function (event) {
-    closeByPressEsc(event);
-  });
+  document.addEventListener('keydown', closeByPressEsc);
   popup.classList.add('popup_opened');
 };
 
 function closePopup(popup) {
-  document.removeEventListener('keydown', function (event) {
-    closeByPressEsc(event);
-  });
+  document.removeEventListener('keydown', closeByPressEsc);
   popup.classList.remove('popup_opened');
 };
 
@@ -94,12 +90,8 @@ function closeByClick(event) {
 };
 
 function closeByPressEsc(event) {
-  //console.log(event.target);
-  //console.log(event.currentTarget);
   if (event.key === 'Escape') {
-    closePopup(popupEdit);
-    closePopup(popupCreate);
-    closePopup(popupDisplay);
+    closePopup(document.querySelector('.popup_opened'));
   }
 };
 

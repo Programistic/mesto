@@ -16,13 +16,13 @@ const enableValidation = (valueObject) => {
   });
 };
 
-/* проверка валидности полей ввода и изменение статуса кнопки отправки формы */
+/* установка слушателей на поля ввода */
 const setEventListeners = (formElement, formInput, formSubmit, formInputError, formInputErrorActive, buttonInactive) => {
   const inputList = Array.from(formElement.querySelectorAll(formInput)); // выбираем все поля ввода на переданной в функцию форме
   const buttonElement = formElement.querySelector(formSubmit); // выбираем элемент отправки формы на переданной в функцию форме
   inputList.forEach((inputElement) => { // здесь создаём inputElement - поле ввода
-    hideInputError(formElement, inputElement, formInputError, formInputErrorActive); // скрываем сообщения об ошиках (красноту)
-    toggleButtonState(inputList, buttonElement, buttonInactive); // если не валидно - меняем статус кнопки отправки формы на неактивную
+    //hideInputError(formElement, inputElement, formInputError, formInputErrorActive); // скрываем сообщения об ошиках (красноту)
+    //toggleButtonState(inputList, buttonElement, buttonInactive); // если не валидно - меняем статус кнопки отправки формы на неактивную
     inputElement.addEventListener('input', () => { // вешаем слушатель событий на каждое поле ввода на форме
       checkInputValidity(formElement, inputElement, formInputError, formInputErrorActive); // проверяем валидность после ввода каждого символа
       toggleButtonState(inputList, buttonElement, buttonInactive); // если не валидно - меняем статус кнопки отправки формы на неактивную
