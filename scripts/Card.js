@@ -2,18 +2,18 @@ import { popupDisplay, popupDisplayImage, popupDisplayImageCaption, openPopup } 
 
 export class Card {
   constructor(data, cardTemplateSelector) {
-    this._cardTemplate = document.querySelector(cardTemplateSelector).content;
+    this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
   }
 
-  _deleteCard(event) {
-    event.target.closest('.card').remove();
+  _handleDeleteCard() {
+    this._newCard.remove();
   };
   
-  _likeCard(event) {
-    event.target.classList.toggle('card__button-like_liked');
+  _handleLikeButton() {
+    this._likeButton.classList.toggle('card__button-like_liked');
   };
 
   /* инициализация попапа показа фотографии данными из карточки */
@@ -28,10 +28,11 @@ export class Card {
     this._newCard = this._cardTemplate.cloneNode(true);
     this._newCardTitle = this._newCard.querySelector('.card__title');
     this._newCardImage = this._newCard.querySelector('.card__image');
-
     this._newCardTitle.textContent = this._name;
     this._newCardImage.src = this._link;
     this._newCardImage.alt = this._alt;
+
+    this._likeButton = this._newCard.querySelector('.card__button-like');
 
     this._setEventListeners();
 
@@ -39,8 +40,8 @@ export class Card {
   };
 
   _setEventListeners() {
-    this._newCard.querySelector('.card__button-delete').addEventListener('click', this._deleteCard);
-    this._newCard.querySelector('.card__button-like').addEventListener('click', this._likeCard);
+    this._newCard.querySelector('.card__button-delete').addEventListener('click', () => {this._handleDeleteCard()});
     this._newCardImage.addEventListener('click', () => {this._initialisePopupDisplay(); openPopup(popupDisplay)});
+    this._likeButton.addEventListener('click', () => {this._handleLikeButton()});
   };
 }

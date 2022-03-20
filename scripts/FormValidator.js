@@ -2,11 +2,11 @@ export class FormValidator {
   constructor(settings, form) {
     this._settings = settings;
     this._form = form;
-    this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputSelector)); // собираем все поля ввода на переданной в конструктор форме в массив
+    this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputSelector)); // массив полей ввода
     this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
   }
 
-  /* возвращает значение свойства valid первого невалидного элемента */
+  /* возврат значения свойства valid первого невалидного элемента */
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
@@ -30,7 +30,7 @@ export class FormValidator {
     errorElement.classList.add(this._settings.errorClass); // показываем сообщение об ошибке ввода
   };
   
-  /* скрываем сообщение об ошибке и убираем красную линию под полем ввода */
+  /* удаление сообщения об ошибке и красной линии под полем ввода */
   _hideInputError(inputElement) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._settings.inputErrorClass); // убираем красное подчёркивание поля ввода
@@ -38,8 +38,8 @@ export class FormValidator {
     errorElement.textContent = ''; // очищаем текст сообщения об ошибке ввода
   };
 
-  /* меняем статус кнопки отправки формы (активная - неактивная) */
-  _toggleButtonState() {
+  /* изменение статуса кнопки отправки формы (активная - неактивная) */
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._settings.inactiveButtonClass);
     } else {
@@ -47,13 +47,11 @@ export class FormValidator {
     }
   };
 
-  /* сброс сообщений об ошибках в полях ввода */
+  /* удаление сообщений об ошибке при открытии попап */
   resetInputError() {
     this._inputList.forEach((inputElement) => {
-      inputElement.classList.remove(this._settings.inputErrorClass);
-      const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
-      errorElement.classList.remove(this._settings.errorClass);
-    });
+      this._hideInputError(inputElement);
+    }); 
   };
 
   /* включение валидации */
@@ -70,7 +68,7 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => { // здесь создаём inputElement - выбираем одно поле ввода из массива полей ввода
       inputElement.addEventListener('input', () => { // вешаем слушатель событий на каждое поле ввода на форме
         this._checkInputValidity(inputElement); // проверяем валидность после ввода каждого символа
-        this._toggleButtonState(); // если не валидно - меняем статус кнопки отправки формы на неактивную
+        this.toggleButtonState(); // если не валидно - меняем статус кнопки отправки формы на неактивную
       });
     });
   };

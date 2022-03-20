@@ -77,12 +77,17 @@ const validationConfig = {
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm);
 
-/* добавление элемента в DOM в начало списка cards */
+/* создание новой карточки и добавление её в DOM в начало списка cards */
 function renderCard(data) {
+  cards.prepend(createCard(data));
+};
+
+/* создание новой карточки */
+function createCard(data) {
   const card = new Card(data, '.template-card');
   const newCard = card.createCard();
-  cards.prepend(newCard);
-};
+  return newCard;
+}
 
 /* создание карточки на основе имеющегося массива данных и добавление её в DOM  */
 function addCardFromArray(array) {
@@ -91,7 +96,7 @@ function addCardFromArray(array) {
   });
 };
 
-/* создание карточки на основе данных из полей ввода и добавление её в DOM  */
+/* получение данных из полей ввода popupCreate для создания карточки */
 function addNewCard() {
   const card = {
     name: popupCreatePlaceName.value,
@@ -128,14 +133,12 @@ function closeByPressEsc(event) {
 function resetFormAddCard() {
   popupCreatePlaceName.value = '';
   popupCreatePlaceImage.value = '';
-  popupCreateButtonCreate.classList.add('button_inactive');
 };
 
 /* инициализация полей формы редактирования профиля данными из профайла */
 function initialisePopupEdit() {
   popupEditUserName.value = profileUserName.textContent;
   popupEditUserInfo.value = profileUserInfo.textContent;
-  popupEditButtonSave.classList.remove('button_inactive');
 };
 
 /* инициализация профайла данными из полей формы редактирования профиля*/
@@ -159,14 +162,30 @@ function handleCreateFormSubmit(event) {
   closePopup(popupCreate);
 };
 
+/* обработчик события для кнопки редактирования профиля */
+function handleButtonEdit() {
+  popupEditValidator.resetInputError();
+  initialisePopupEdit();
+  popupEditValidator.toggleButtonState();
+  openPopup(popupEdit);
+}
+
+/* обработчик события для кнопки добавления карточки */
+function handleButtonAdd() {
+  popupCreateValidator.resetInputError();
+  resetFormAddCard();
+  popupCreateValidator.toggleButtonState();
+  openPopup(popupCreate)
+}
+
 addCardFromArray(initialCards);
 
 /* включение валидации модальных окон */
 popupEditValidator.enableValidation();
 popupCreateValidator.enableValidation();
 
-profileButtonEdit.addEventListener('click', () => {initialisePopupEdit(); popupEditValidator.resetInputError(); openPopup(popupEdit)});
-profileButtonAdd.addEventListener('click', () => {resetFormAddCard(); popupCreateValidator.resetInputError(); openPopup(popupCreate)});
+profileButtonEdit.addEventListener('click', handleButtonEdit);
+profileButtonAdd.addEventListener('click', handleButtonAdd);
 popupEdit.addEventListener('mousedown', closeByClick);
 popupCreate.addEventListener('mousedown', closeByClick);
 popupDisplay.addEventListener('mousedown', closeByClick);
