@@ -1,6 +1,7 @@
 import { Section } from './Section.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { Popup } from './Popup.js';
 //import { fromCodePoint } from 'core-js/core/string';
 //import './styles/index.css'; // добавьте импорт главного файла стилей 
 
