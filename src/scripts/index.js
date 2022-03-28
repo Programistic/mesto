@@ -1,5 +1,7 @@
+import { Section } from './Section.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+//import { fromCodePoint } from 'core-js/core/string';
 //import './styles/index.css'; // добавьте импорт главного файла стилей 
 
 /* массив карточек для вставки на страницу при первой загрузке */
@@ -62,8 +64,8 @@ export const popupDisplay = document.querySelector('.popup_role_image-display');
 export const popupDisplayImage = popupDisplay.querySelector('.popup__image');
 export const popupDisplayImageCaption = popupDisplay.querySelector('.popup__image-caption');
 
-/* cards */
-const cards = document.querySelector('.cards');
+/* containerSelector */
+const containerSelector = document.querySelector('.cards');
 
 const validationConfig = {
   formSelector: '.form',
@@ -78,33 +80,34 @@ const validationConfig = {
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm);
 
-/* создание новой карточки и добавление её в DOM в начало списка cards */
-function renderCard(data) {
-  cards.prepend(createCard(data));
-};
+/* экземпляр класса для отрисовки карточек на странице */
+const section = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = createCard(item);
+    section.addItem(newCard);
+  }
+  },
+  containerSelector);
 
-/* создание новой карточки */
+  section.renderItems();
+
+/* создание экземпляра новой карточки */
 function createCard(data) {
   const card = new Card(data, '.template-card');
   const newCard = card.createCard();
   return newCard;
-}
-
-/* создание карточки на основе имеющегося массива данных и добавление её в DOM  */
-function addCardFromArray(array) {
-  array.forEach((item) => {
-    renderCard(item);
-  });
 };
 
-/* получение данных из полей ввода popupCreate для создания карточки */
+/* получение данных из полей ввода popupCreate и создание по ним новой карточки */
 function addNewCard() {
   const card = {
     name: popupCreatePlaceName.value,
     link: popupCreatePlaceImage.value,
     alt: popupCreatePlaceName.value
   };
-  renderCard(card);
+  const newCard = createCard(card);
+  section.addItem(newCard);
 };
 
 export function openPopup(popup) {
@@ -178,8 +181,6 @@ function handleButtonAdd() {
   popupCreateValidator.toggleButtonState();
   openPopup(popupCreate)
 }
-
-addCardFromArray(initialCards);
 
 /* включение валидации модальных окон */
 popupEditValidator.enableValidation();
