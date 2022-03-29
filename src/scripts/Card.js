@@ -5,7 +5,7 @@ export class Card {
     this._cardTemplate = cardTemplateSelector.content.querySelector('.card');
     this._name = data.name;
     this._link = data.link;
-    this._alt = data.alt;
+    this._alt = data.name;
     this._handleImageClick = handleImageClick;
   }
 

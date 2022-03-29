@@ -1,4 +1,4 @@
-// Section.js, отвечает за отрисовку элементов на странице
+// Section.js, создаётся класс отвечающий за отрисовку элементов на странице
 
 export class Section {
   constructor({ items, renderer }, containerSelector) {

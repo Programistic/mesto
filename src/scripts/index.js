@@ -3,6 +3,7 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 //import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
 //import { fromCodePoint } from 'core-js/core/string';
 //import './styles/index.css'; // добавьте импорт главного файла стилей 
@@ -85,6 +86,34 @@ const validationConfig = {
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm);
 
+/* создание экземпляра новой карточки */
+const createCard = (data) => {
+  const card = new Card(data, cardTemplateSelector, () => imagePopup.open(data.name, data.link));
+  return card.createCard();
+};
+
+/* получение данных из полей ввода popupCreate и создание по ним новой карточки */
+function addNewCard(data) {
+  const card = {
+    name: data.placename,
+    link: data.placeimage,
+  };
+  const newCard = createCard(card);
+  section.addItem(newCard);
+};
+
+/* инициализация профайла данными из полей формы редактирования профиля*/
+function initialiseProfile(data) {
+  profileUserName.textContent = data.username;
+  profileUserInfo.textContent = data.userinfo;
+};
+
+/* инициализация полей формы редактирования профиля данными из профайла */
+function initialisePopupEdit() {
+  popupEditUserName.value = profileUserName.textContent;
+  popupEditUserInfo.value = profileUserInfo.textContent;
+};
+
 /* экземпляр класса для отрисовки карточек на странице */
 const section = new Section({
   items: initialCards,
@@ -94,101 +123,42 @@ const section = new Section({
   }
   },
   containerSelector);
-
   section.renderItems();
 
-/* создание экземпляра новой карточки */
-function createCard(data) {
-  const card = new Card(data, cardTemplateSelector, () => imagePopup.open(data.name, data.link));
-  const newCard = card.createCard();
-  return newCard;
+/*  */
+const handleEditFormSubmit = (data) => {
+  initialiseProfile(data);
+  editPopup.close();
 };
 
-/* получение данных из полей ввода popupCreate и создание по ним новой карточки */
-function addNewCard() {
-  const card = {
-    name: popupCreatePlaceName.value,
-    link: popupCreatePlaceImage.value,
-    alt: popupCreatePlaceName.value
-  };
-  const newCard = createCard(card);
-  section.addItem(newCard);
+/*  */
+const handleCreateFormSubmit = (data) => {
+  addNewCard(data);
+  createPopup.close();
 };
 
-/* создание экземпляра попап отображения картинки */
+/*  */
 const imagePopup = new PopupWithImage('.popup_role_image-display');
+const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
+const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
+
 imagePopup.setEventListeners();
-
-/*export function openPopup(popup) {
-  document.addEventListener('keydown', closeByPressEsc);
-  popup.classList.add('popup_opened');
-};
-
-function closePopup(popup) {
-  document.removeEventListener('keydown', closeByPressEsc);
-  popup.classList.remove('popup_opened');
-};
-
-/* закрытие popup по клику на крестик или оверлэй 
-function closeByClick(event) {
-  if (event.target === event.currentTarget || event.target.classList.contains('popup__button-close')) {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-};
-
-function closeByPressEsc(event) {
-  if (event.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-};   */
-
-/* очищение полей ввода и дезактивация кнопки при открытии попапа создания новой карточки */
-function resetFormAddCard() {
-  popupCreatePlaceName.value = '';
-  popupCreatePlaceImage.value = '';
-};
-
-/* инициализация полей формы редактирования профиля данными из профайла */
-function initialisePopupEdit() {
-  popupEditUserName.value = profileUserName.textContent;
-  popupEditUserInfo.value = profileUserInfo.textContent;
-};
-
-/* инициализация профайла данными из полей формы редактирования профиля*/
-function initialiseProfile() {
-  profileUserName.textContent = popupEditUserName.value;
-  profileUserInfo.textContent = popupEditUserInfo.value;
-};
-
-/* обработка события submit для формы редактирования профиля */
-function handleEditFormSubmit(event) {
-  event.preventDefault();
-  initialiseProfile();
- // closePopup(popupEdit);
-};
-
-/* обработка события submit для формы создания новой карточки */
-function handleCreateFormSubmit(event) {
-  event.preventDefault();
-  addNewCard();
-  resetFormAddCard();
-  //closePopup(popupCreate);
-};
+editPopup.setEventListeners();
+createPopup.setEventListeners();
 
 /* обработчик события для кнопки редактирования профиля */
 function handleButtonEdit() {
   popupEditValidator.resetInputError();
   initialisePopupEdit();
   popupEditValidator.toggleButtonState();
- // openPopup(popupEdit);
+  editPopup.open();
 }
 
 /* обработчик события для кнопки добавления карточки */
 function handleButtonAdd() {
   popupCreateValidator.resetInputError();
-  resetFormAddCard();
   popupCreateValidator.toggleButtonState();
- // openPopup(popupCreate)
+  createPopup.open();
 }
 
 /* включение валидации модальных окон */
@@ -197,8 +167,3 @@ popupCreateValidator.enableValidation();
 
 profileButtonEdit.addEventListener('click', handleButtonEdit);
 profileButtonAdd.addEventListener('click', handleButtonAdd);
-//popupEdit.addEventListener('mousedown', closeByClick);
-//popupCreate.addEventListener('mousedown', closeByClick);
-//popupDisplay.addEventListener('mousedown', closeByClick);
-popupEditForm.addEventListener('submit', handleEditFormSubmit);
-popupCreateForm.addEventListener('submit', handleCreateFormSubmit);

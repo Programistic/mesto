@@ -1,4 +1,4 @@
-// Popup.js
+// Popup.js, создаётся класс, отвечающий за открытие и закрытие попапа
 
 export class Popup {
   constructor(popupSelector) {
