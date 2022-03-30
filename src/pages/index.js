@@ -51,8 +51,9 @@ const handleCreateFormSubmit = (data) => {
 
 /* инициализация полей формы редактирования профиля данными из профайла */
 const initPopupEdit = () => {
-  popupEditUserName.value = userInfo.getUserInfo().editUserName;
-  popupEditUserInfo.value = userInfo.getUserInfo().editUserInfo; 
+  const data = userInfo.getUserInfo();
+  popupEditUserName.value = data.editUserName;
+  popupEditUserInfo.value = data.editUserInfo; 
 };
 
 /* экземпляр класса для отрисовки карточек на странице */
