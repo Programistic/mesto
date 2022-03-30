@@ -1,11 +1,11 @@
 // constants.js хранит константы проекта
 
-import algalroboImage from './images/Алгаллробо.jpg';
-import veronaImage from './images/Верона.jpg';
-import amsterdamImage from './images/Амстердам.jpg';
-import badpirmontImage from './images/Бад-Пирмонт.jpg';
-import matterhornImage from './images/Маттерхорн.jpg';
-import dombayImage from './images/Домбай.png';
+import algalroboImage from '../images/Алгаллробо.jpg';
+import veronaImage from '../images/Верона.jpg';
+import amsterdamImage from '../images/Амстердам.jpg';
+import badpirmontImage from '../images/Бад-Пирмонт.jpg';
+import matterhornImage from '../images/Маттерхорн.jpg';
+import dombayImage from '../images/Домбай.png';
 
 /* массив карточек для вставки на страницу при первой загрузке */
 export const initialCards = [
