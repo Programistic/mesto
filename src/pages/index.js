@@ -2,16 +2,16 @@
 
 import './index.css';
 
-import { initialCards } from '../components/Constants.js';
+import { initialCards } from '../utils/constants.js';
 
-import { profileButtonEdit } from '../components/Constants.js';
-import { profileButtonAdd } from '../components/Constants.js';
+import { profileButtonEdit } from '../utils/constants.js';
+import { profileButtonAdd } from '../utils/constants.js';
 
-import { popupEditForm } from '../components/Constants.js';
-import { popupEditUserName } from '../components/Constants.js';
-import { popupEditUserInfo } from '../components/Constants.js';
+import { popupEditForm } from '../utils/constants.js';
+import { popupEditUserName } from '../utils/constants.js';
+import { popupEditUserInfo } from '../utils/constants.js';
 
-import { popupCreateForm } from '../components/Constants.js';
+import { popupCreateForm } from '../utils/constants.js';
 
 import { Section } from '../components/Section.js';
 import { Card } from '../components/Card.js';
@@ -19,7 +19,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 
-import { validationConfig } from '../components/Constants.js';
+import { validationConfig } from '../utils/constants.js';
 import { FormValidator } from '../components/FormValidator.js';
 
 /* создание экземпляров класса FormValidator для двух модальных окон */
