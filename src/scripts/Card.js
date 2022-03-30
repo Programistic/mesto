@@ -2,7 +2,7 @@
 
 export class Card {
   constructor(data, cardTemplateSelector, handleImageClick) {
-    this._cardTemplate = cardTemplateSelector.content.querySelector('.card');
+    this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
