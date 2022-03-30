@@ -1,35 +1,42 @@
-// Constants.js хранит константы проекта
+// constants.js хранит константы проекта
+
+import algalroboImage from './images/Алгаллробо.jpg';
+import veronaImage from './images/Верона.jpg';
+import amsterdamImage from './images/Амстердам.jpg';
+import badpirmontImage from './images/Бад-Пирмонт.jpg';
+import matterhornImage from './images/Маттерхорн.jpg';
+import dombayImage from './images/Домбай.png';
 
 /* массив карточек для вставки на страницу при первой загрузке */
 export const initialCards = [
   {
     name: 'Альгарробо',
-    link: './images/Алгаллробо.jpg',
+    link: algalroboImage,
     alt: 'Деревянный мост в городе Альгарробо в Чили'
   },
   {
     name: 'Верона',
-    link: './images/Верона.jpg',
+    link: veronaImage,
     alt: 'Лес в провинции Верона в Италии'
   },
   {
     name: 'Амстердам',
-    link: './images/Амстердам.jpg',
+    link: amsterdamImage,
     alt: 'Один из каналов в Амстердаме'
   },
   {
     name: 'Бад-Пирмонт',
-    link: './images/Бад-Пирмонт.jpg',
+    link: badpirmontImage,
     alt: 'Лес в окрестностях города Бад-Пирмонт в Германии'
   },
   {
     name: 'Маттерхорн',
-    link: './images/Маттерхорн.jpg',
+    link: matterhornImage,
     alt: 'Вид на гору Маттерхорн в Швейцарии'
   },
   {
     name: 'Домбай',
-    link: './images/Домбай.png',
+    link: dombayImage,
     alt: 'Домбай'
   }
 ];
