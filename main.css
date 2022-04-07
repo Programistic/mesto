@@ -6,7 +6,7 @@
 .button{border:0;cursor:pointer;padding:0;transition:opacity .15s ease}
 .header{border-bottom:1px solid rgba(84,84,84,.7);margin:0 0 40px;padding:45px 0 41px}@media screen and (max-width:580px){.header{margin:0 0 42px;padding:28px 0 31px}}
 .profile{display:grid;grid-template-areas:"avatar inner-container button-add" "avatar user-info button-add";grid-template-columns:150px minmax(35%,calc(100% - 300px)) 150px;grid-template-rows:77px 43px}@media screen and (max-width:580px){.profile{align-items:end;grid-template-areas:"avatar" "inner-container" "user-info" "button-add";grid-template-columns:1fr;grid-template-rows:120px 55px 25px 86px;justify-items:center;padding:0 19px}}
-.profile__avatar{border-radius:50%;grid-area:avatar;height:120px;width:120px}
+.profile__avatar{border-radius:50%;grid-area:avatar;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
 .profile__inner-container{display:flex;grid-area:inner-container}@media screen and (max-width:580px){.profile__inner-container{display:grid;grid-template-areas:". user-name button-edit";grid-template-columns:28px 1fr 28px}}
 .profile__user-name{color:#fff;font:500 42px/48px Inter,Arial,sans-serif;grid-area:user-name;margin:20px 0 7px;max-width:60%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:580px){.profile__user-name{font:400 27px/37px Inter,Arial,sans-serif;margin:0;max-width:230px}}
 .profile__user-info{color:#fff;font:400 18px/21.78px Inter,Arial,sans-serif;grid-area:user-info;margin:0 30px 0 0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:580px){.profile__user-info{font:400 14px/16.94px Inter,Arial,sans-serif;margin:0;max-width:282px}}
