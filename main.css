@@ -19,7 +19,7 @@
 .card__button-delete{background:url(cbc09a894bdd4c956365.svg) 50% no-repeat hsla(0,0%,100%,0);grid-area:card-top;height:19px;justify-self:end;margin:20px 20px 0 0;width:18px}.card__button-delete:hover{opacity:.5}
 .card__inner-container{background-color:#fff;border-radius:0 0 10px 10px;display:flex;grid-area:card-bottom;justify-content:space-between;padding:21px 20px}
 .card__like-container{align-items:center;display:flex;flex-direction:column}
-.card__title{font:900 24px/29.05px Inter,Arial,sans-serif;margin:0 0 10px;max-width:70%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
+.card__title{font:900 24px/29.05px Inter,Arial,sans-serif;margin:0 0 7px;max-width:70%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .card__button-like{background:url(87ed371465c7a6a1cd01.svg) 50% no-repeat #fff;height:19px;margin:0;width:22px}.card__button-like:hover{opacity:.5}
 .card__button-like_liked{background-image:url(fe17a515669479b1e649.svg)}
 .card__like-counter{color:#000;font:400 13px/16px Inter,Arial,sans-serif;margin:3px 0 0;padding:0}
