@@ -1,9 +1,10 @@
 // UserInfo.js создаётся класс, отвечающий за управление отображением информации о пользователе на странице.
 
 export class UserInfo {
-  constructor({ userNameSelector, userInfoSelector }) {
-    this._userName = document.querySelector(userNameSelector);
-    this._userInfo = document.querySelector(userInfoSelector);
+  constructor({ userNameSelector, userInfoSelector, userAvatarSelector }) {
+    this._userName = userNameSelector;
+    this._userInfo = userInfoSelector;
+    this._userAvatar = userAvatarSelector;
   }
   
   getUserInfo() {
@@ -16,5 +17,9 @@ export class UserInfo {
   setUserInfo(userNameValue, userInfoValue) {
     this._userName.textContent = userNameValue;
     this._userInfo.textContent = userInfoValue;
+  }
+
+  setUserAvatar(userAvatarURL) {
+    this._userAvatar.src = userAvatarURL;
   }
 }

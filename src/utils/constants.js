@@ -1,14 +1,49 @@
 // constants.js хранит константы проекта
 
-import algalroboImage from '../images/Алгаллробо.jpg';
+const cohortID = 'cohort-39';
+export const cardURL = `https://mesto.nomoreparties.co/v1/${cohortID}/cards`;
+export const userURL = `https://mesto.nomoreparties.co/v1/${cohortID}/users/me`;
+export const token = 'fed91f6d-1f71-4682-bc63-ccd602fc60c4';
+
+/* profile */
+const profile = document.querySelector('.profile');
+export const userNameSelector = profile.querySelector('.profile__user-name');
+export const userInfoSelector = profile.querySelector('.profile__user-info');
+export const userAvatarSelector = profile.querySelector('.profile__avatar');
+export const profileButtonEdit = profile.querySelector('.profile__button-edit');
+export const profileButtonAdd = profile.querySelector('.profile__button-add');
+
+/* popup-edit */
+const popupEdit = document.querySelector('.popup_role_edit');
+export const popupEditForm = popupEdit.querySelector('.form');
+export const popupEditUserName = popupEdit.querySelector('.form__input_role_user-name');
+export const popupEditUserInfo = popupEdit.querySelector('.form__input_role_user-info');
+
+/* popup-create */
+const popupCreate = document.querySelector('.popup_role_create');
+export const popupCreateForm = popupCreate.querySelector('.form');
+
+export const cardsContainer = document.querySelector('.cards');
+
+export const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+};
+
+
+/*import algalroboImage from '../images/Алгаллробо.jpg';
 import veronaImage from '../images/Верона.jpg';
 import amsterdamImage from '../images/Амстердам.jpg';
 import badpirmontImage from '../images/Бад-Пирмонт.jpg';
 import matterhornImage from '../images/Маттерхорн.jpg';
-import dombayImage from '../images/Домбай.png';
+import dombayImage from '../images/Домбай.png';*/
 
 /* массив карточек для вставки на страницу при первой загрузке */
-export const initialCards = [
+/*export const initialCards = [
   {
     name: 'Альгарробо',
     link: algalroboImage,
@@ -39,28 +74,4 @@ export const initialCards = [
     link: dombayImage,
     alt: 'Домбай'
   }
-];
-
-/* profile */
-export const profile = document.querySelector('.profile');
-export const profileButtonEdit = profile.querySelector('.profile__button-edit');
-export const profileButtonAdd = profile.querySelector('.profile__button-add');
-
-/* popup-edit */
-export const popupEdit = document.querySelector('.popup_role_edit');
-export const popupEditForm = popupEdit.querySelector('.form');
-export const popupEditUserName = popupEdit.querySelector('.form__input_role_user-name');
-export const popupEditUserInfo = popupEdit.querySelector('.form__input_role_user-info');
-
-/* popup-create */
-export const popupCreate = document.querySelector('.popup_role_create');
-export const popupCreateForm = popupCreate.querySelector('.form');
-
-export const validationConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-};
+];*/
