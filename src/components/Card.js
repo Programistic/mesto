@@ -19,7 +19,7 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._alt;
 
-    this._likeButton = this._card.querySelector('.card__button-like');
+    this._likeButton = this._card.querySelector('.card__like');
     this._deleteButton = this._card.querySelector('.card__button-delete');
 
     this._setEventListeners();
