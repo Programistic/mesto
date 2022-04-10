@@ -1,9 +1,10 @@
 // constants.js хранит константы проекта
 
 const cohortID = 'cohort-39';
+export const token = 'fed91f6d-1f71-4682-bc63-ccd602fc60c4';
 export const cardURL = `https://mesto.nomoreparties.co/v1/${cohortID}/cards`;
 export const userURL = `https://mesto.nomoreparties.co/v1/${cohortID}/users/me`;
-export const token = 'fed91f6d-1f71-4682-bc63-ccd602fc60c4';
+export const avatarURL =`https://mesto.nomoreparties.co/v1/${cohortID}/users/me/avatar`;
 
 /* profile */
 const profile = document.querySelector('.profile');

@@ -1,9 +1,12 @@
 // Api.js, создание класса для работы с API
 
+import { avatarURL } from "../utils/constants";
+
 export class Api {
-  constructor(userURL, cardURL, token) {
+  constructor(userURL, cardURL, avatarURL, token) {
     this._userURL = userURL;
     this._cardURL = cardURL;
+    this._avatarURL = avatarURL;
     this._token = token;
   }
 
@@ -16,8 +19,8 @@ export class Api {
       .then(res => {
         return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
       })
-      .then(userData => {
-        return userData;
+      .then(data => {
+        return data;
       })
       .catch(err => {
         console.log(err);
@@ -56,8 +59,30 @@ export class Api {
       .then((res) => {
         return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
       })
-      .then((userData) => {
+      .then(userData => {
         return userData;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  setAvatar(avatarData) {
+    return fetch(this._avatarURL, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: avatarData['avatar-image']
+      })
+      })
+      .then((res) => {
+        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
+      })
+      .then(avatarData => {
+        return avatarData;
       })
       .catch((err) => {
         console.log(err);

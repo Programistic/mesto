@@ -2,7 +2,7 @@
 
 import './index.css';
 
-import { userURL, cardURL, token } from '../utils/constants.js';
+import { userURL, cardURL, avatarURL, token } from '../utils/constants.js';
 import { validationConfig } from '../utils/constants.js';
 import { userNameSelector, userInfoSelector, userAvatarSelector, cardsContainer } from '../utils/constants.js';
 import { profileButtonEdit, profileButtonAdd, profileAvatarUpdate } from '../utils/constants.js';
@@ -21,13 +21,16 @@ const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm);
 const popupAvatarUpdateValidator = new FormValidator(validationConfig, popupAvatarUpdateForm);
 
-/* изменение формата данных */
+const api = new Api(userURL, cardURL, avatarURL, token);
+
+
+/* изменение формата данных 
 const getInputValues = (data) => {
   return {
     name: data['place-name'],
     link: data['place-image']
   };
-}
+}*/
 
 /* инициализация полей формы редактирования профиля данными из профайла */
 const initPopupEdit = () => {
@@ -56,10 +59,10 @@ const handleCreateFormSubmit = (data) => {
 /* обновление профиля пользователя данными с сервера */
 const updateProfile = () => {
   api.getUserInfo()
-  .then(data => {
-    userInfo.setUserInfo(data['name'], data['about']);
-    userInfo.setUserAvatar(data['avatar']);
-  });
+    .then(data => {
+      userInfo.setUserInfo(data['name'], data['about']);
+      userInfo.setUserAvatar(data['avatar']);
+    });
 }
 
 /* обновление карточной галереи данными с сервера */
@@ -88,8 +91,11 @@ const handleEditFormSubmit = (data) => {
 }
 
 /* обновление аватара пользователя */
-const handleAvatarUpdateFormSubmit = () => {
-  console.log('!!!');
+const handleAvatarUpdateFormSubmit = (data) => {
+  api.setAvatar(data)
+    .then(avatarData => {
+      userInfo.setUserAvatar(avatarData['avatar']);
+    });
   avatarUpdatePopup.close();
 }
 
@@ -122,7 +128,6 @@ const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
 const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
 const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit);
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
-const api = new Api(userURL, cardURL, token);
 
 updateProfile();
 updateCardGallery();
