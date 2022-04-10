@@ -18,6 +18,7 @@
 .card{display:grid;grid-template-areas:"card-top" "card-bottom";grid-template-columns:100%;grid-template-rows:282px 80px}
 .card__image{border-radius:10px 10px 0 0;color:#fff;display:block;grid-area:card-top;height:100%;max-height:282px;-o-object-fit:cover;object-fit:cover;width:100%}.card__image:hover{cursor:pointer}
 .card__button-delete{background:url(cbc09a894bdd4c956365.svg) 50% no-repeat hsla(0,0%,100%,0);grid-area:card-top;height:19px;justify-self:end;margin:20px 20px 0 0;width:18px}.card__button-delete:hover{opacity:.5}
+.card__button-delete_inactive{display:none}
 .card__inner-container{background-color:#fff;border-radius:0 0 10px 10px;display:flex;grid-area:card-bottom;justify-content:space-between;padding:21px 20px}
 .card__title{font:900 24px/29.05px Inter,Arial,sans-serif;margin:0 0 7px;max-width:70%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .card__button-like{align-items:center;background-color:#fff;display:flex;flex-direction:column;justify-content:center}
