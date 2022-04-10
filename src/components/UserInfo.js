@@ -22,4 +22,12 @@ export class UserInfo {
   setUserAvatar(userAvatarURL) {
     this._userAvatar.src = userAvatarURL;
   }
+
+  setUserID(userID) {
+    this._userID = userID;
+  }
+
+  getUserID() {
+    return this._userID;
+  }
 }

@@ -30,7 +30,8 @@ const popupAvatarUpdate = document.querySelector('.popup_role_avatar-update');
 export const popupAvatarUpdateForm = popupAvatarUpdate.querySelector('.form');
 
 /* popup-confirm */
-const popupConfirm = document.querySelector('.popup_role_confirm');
+const popupConfirmDelete = document.querySelector('.popup_role_confirm');
+export const popupConfirmDeleteForm = popupConfirmDelete.querySelector('.form');
 
 export const cardsContainer = document.querySelector('.cards');
 

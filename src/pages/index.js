@@ -6,7 +6,7 @@ import { userURL, cardURL, avatarURL, token } from '../utils/constants.js';
 import { validationConfig } from '../utils/constants.js';
 import { userNameSelector, userInfoSelector, userAvatarSelector, cardsContainer } from '../utils/constants.js';
 import { profileButtonEdit, profileButtonAdd, profileAvatarUpdate } from '../utils/constants.js';
-import { popupEditForm, popupCreateForm, popupAvatarUpdateForm, popupEditUserName, popupEditUserInfo } from '../utils/constants.js';
+import { popupEditForm, popupCreateForm, popupAvatarUpdateForm, popupConfirmDeleteForm, popupEditUserName, popupEditUserInfo } from '../utils/constants.js';
 
 import { Api } from '../components/Api.js';
 import { UserInfo } from '../components/UserInfo.js';
@@ -14,6 +14,7 @@ import { Section } from '../components/Section.js';
 import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithEmptyForm } from '../components/PopupWithEmptyForm.js';
 import { FormValidator } from '../components/FormValidator.js';
 
 /* создание экземпляров класса FormValidator для двух модальных окон */
@@ -39,21 +40,20 @@ const initPopupEdit = () => {
   popupEditUserInfo.value = data.editUserInfo; 
 }
 
-/* создание экземпляра новой карточки */
-const createCard = (data) => {
-  const card = new Card(data, '.template-card', () => imagePopup.open(data.name, data.link));
-  const newCard = card.createCard();
-  return newCard;
+/* проверяем, наша ли это карточка */
+const checkOwner = (data) => {
+  if (data.owner['_id'] === userInfo.getUserID()) {
+    return true;
+  }
+  return false;
 }
 
-/* создание карточки по данным из полей ввода */
-const handleCreateFormSubmit = (data) => {
-  api.setCard(data)
-    .then(data => {
-      const newCard = createCard(data);
-      cardsContainer.prepend(newCard);
-    }); 
-  createPopup.close();
+/* создание экземпляра новой карточки */
+const createCard = (data) => {
+  const isMyCard = checkOwner(data);
+  const card = new Card(data, '.template-card', () => imagePopup.open(data.name, data.link), handleDeleteButton);
+  const newCard = card.createCard(isMyCard);
+  return newCard;
 }
 
 /* обновление профиля пользователя данными с сервера */
@@ -62,6 +62,7 @@ const updateProfile = () => {
     .then(data => {
       userInfo.setUserInfo(data['name'], data['about']);
       userInfo.setUserAvatar(data['avatar']);
+      userInfo.setUserID(data['_id']);
     });
 }
 
@@ -81,6 +82,16 @@ const updateCardGallery = () => {
   });
 }
 
+/* создание карточки по данным из полей ввода */
+const handleCreateFormSubmit = (data) => {
+  api.setCard(data)
+    .then(data => {
+      const newCard = createCard(data);
+      cardsContainer.prepend(newCard);
+    }); 
+  createPopup.close();
+}
+
 /* установка в профайл новых даннных пользователя из полей ввода */
 const handleEditFormSubmit = (data) => {
   api.setUserInfo(data)
@@ -97,6 +108,12 @@ const handleAvatarUpdateFormSubmit = (data) => {
       userInfo.setUserAvatar(avatarData['avatar']);
     });
   avatarUpdatePopup.close();
+}
+
+const handleConfirmFormSubmit = (cardID) => {
+  api.deleteCard(cardID);
+  updateCardGallery();
+  confirmDeletePopup.close();
 }
 
 const handleButtonEdit = () => {
@@ -118,6 +135,11 @@ const handleAvatarUpdate = () => {
   avatarUpdatePopup.open();
 }
 
+const handleDeleteButton = (cardID) => {
+  confirmDeletePopup.setID(cardID);
+  confirmDeletePopup.open();
+}
+
 /* включение валидации модальных окон */
 popupEditValidator.enableValidation();
 popupCreateValidator.enableValidation();
@@ -127,6 +149,7 @@ const imagePopup = new PopupWithImage('.popup_role_image-display');
 const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
 const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
 const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit);
+const confirmDeletePopup = new PopupWithEmptyForm('.popup_role_confirm', handleConfirmFormSubmit);
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
 
 updateProfile();
@@ -136,6 +159,7 @@ imagePopup.setEventListeners();
 editPopup.setEventListeners();
 createPopup.setEventListeners();
 avatarUpdatePopup.setEventListeners();
+confirmDeletePopup.setEventListeners();
 
 profileButtonEdit.addEventListener('click', handleButtonEdit);
 profileButtonAdd.addEventListener('click', handleButtonAdd);
