@@ -28,7 +28,7 @@ export class Card {
   };
   
   _handleLikeButton() {
-    this._likeButton.classList.toggle('card__button-like_liked');
+    this._likeButton.classList.toggle('card__like_liked');
   };
 
   _handleDeleteButton() {

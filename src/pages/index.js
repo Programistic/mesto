@@ -4,8 +4,9 @@ import './index.css';
 
 import { userURL, cardURL, token } from '../utils/constants.js';
 import { validationConfig } from '../utils/constants.js';
-import { userNameSelector, userInfoSelector, userAvatarSelector, cardsContainer, profileButtonEdit, profileButtonAdd } from '../utils/constants.js';
-import { popupEditForm, popupCreateForm, popupEditUserName, popupEditUserInfo } from '../utils/constants.js';
+import { userNameSelector, userInfoSelector, userAvatarSelector, cardsContainer } from '../utils/constants.js';
+import { profileButtonEdit, profileButtonAdd, profileAvatarUpdate } from '../utils/constants.js';
+import { popupEditForm, popupCreateForm, popupAvatarUpdateForm, popupEditUserName, popupEditUserInfo } from '../utils/constants.js';
 
 import { Api } from '../components/Api.js';
 import { UserInfo } from '../components/UserInfo.js';
@@ -18,6 +19,7 @@ import { FormValidator } from '../components/FormValidator.js';
 /* создание экземпляров класса FormValidator для двух модальных окон */
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm);
+const popupAvatarUpdateValidator = new FormValidator(validationConfig, popupAvatarUpdateForm);
 
 /* изменение формата данных */
 const getInputValues = (data) => {
@@ -85,6 +87,12 @@ const handleEditFormSubmit = (data) => {
   editPopup.close();
 }
 
+/* обновление аватара пользователя */
+const handleAvatarUpdateFormSubmit = () => {
+  console.log('!!!');
+  avatarUpdatePopup.close();
+}
+
 const handleButtonEdit = () => {
   popupEditValidator.resetInputError();
   initPopupEdit();
@@ -98,13 +106,21 @@ const handleButtonAdd = () => {
   createPopup.open();
 }
 
+const handleAvatarUpdate = () => {
+  popupAvatarUpdateValidator.resetInputError();
+  popupAvatarUpdateValidator.toggleButtonState();
+  avatarUpdatePopup.open();
+}
+
 /* включение валидации модальных окон */
 popupEditValidator.enableValidation();
 popupCreateValidator.enableValidation();
+popupAvatarUpdateValidator.enableValidation();
 
 const imagePopup = new PopupWithImage('.popup_role_image-display');
 const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
 const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
+const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit);
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
 const api = new Api(userURL, cardURL, token);
 
@@ -114,6 +130,8 @@ updateCardGallery();
 imagePopup.setEventListeners();
 editPopup.setEventListeners();
 createPopup.setEventListeners();
+avatarUpdatePopup.setEventListeners();
 
 profileButtonEdit.addEventListener('click', handleButtonEdit);
 profileButtonAdd.addEventListener('click', handleButtonAdd);
+profileAvatarUpdate.addEventListener('click', handleAvatarUpdate);

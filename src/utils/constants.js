@@ -12,6 +12,7 @@ export const userInfoSelector = profile.querySelector('.profile__user-info');
 export const userAvatarSelector = profile.querySelector('.profile__avatar');
 export const profileButtonEdit = profile.querySelector('.profile__button-edit');
 export const profileButtonAdd = profile.querySelector('.profile__button-add');
+export const profileAvatarUpdate = profile.querySelector('.profile__edit-icon');
 
 /* popup-edit */
 const popupEdit = document.querySelector('.popup_role_edit');
@@ -22,6 +23,13 @@ export const popupEditUserInfo = popupEdit.querySelector('.form__input_role_user
 /* popup-create */
 const popupCreate = document.querySelector('.popup_role_create');
 export const popupCreateForm = popupCreate.querySelector('.form');
+
+/* popup-avatar-update */
+const popupAvatarUpdate = document.querySelector('.popup_role_avatar-update');
+export const popupAvatarUpdateForm = popupAvatarUpdate.querySelector('.form');
+
+/* popup-confirm */
+const popupConfirm = document.querySelector('.popup_role_confirm');
 
 export const cardsContainer = document.querySelector('.cards');
 
