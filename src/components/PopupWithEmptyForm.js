@@ -1,20 +1,19 @@
-// PopupWithEmptyForm.js, создаётся класс, который дополняет родительский класс обработчиком сабмита формы и возращает id удаляемой карточки.
+// PopupWithEmptyForm.js, создаётся класс, который наследует методы родительского и вызывает колбэк удаления карточки прн наступлении события submit
 
 import { Popup } from './Popup.js';
 
 export class PopupWithEmptyForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector('.form');
   }
 
-  setID(cardID) {
-    this._cardID = cardID;
+  changeHandlerFormSubmit(handleFormSubmit) {
+    this._handleFormSubmit = handleFormSubmit;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener('submit', (event) => { event.preventDefault(), this._handleFormSubmit(this._cardID) });
+    this._form.addEventListener('submit', (event) => { event.preventDefault(), this._handleFormSubmit() });
   }
 }

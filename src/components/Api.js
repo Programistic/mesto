@@ -10,7 +10,7 @@ export class Api {
     this._token = token;
   }
 
-  getUserInfo() {
+  getProfile() {
     return fetch(this._userURL, {
       headers: {
         authorization: this._token
@@ -27,7 +27,7 @@ export class Api {
       });
   }
 
-  getInitialCards() {
+  getCards() {
     return fetch(this._cardURL, {
       headers: {
         authorization: this._token
@@ -113,20 +113,21 @@ export class Api {
   }
 
   deleteCard(cardID) {
-    const cardDeleteURL = this._cardURL + `/${cardID}`;
-    console.log(cardDeleteURL)
-    fetch(cardDeleteURL, {
+    return fetch(this._cardURL + `/${cardID}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token
       }
     })
       .then((res) => {
-        console.log(res);
         return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  setLike() {
+    
   }
 }

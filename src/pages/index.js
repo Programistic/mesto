@@ -24,21 +24,17 @@ const popupAvatarUpdateValidator = new FormValidator(validationConfig, popupAvat
 
 const api = new Api(userURL, cardURL, avatarURL, token);
 
+Promise.all([api.getProfile(), api.getCards()])
+  .then(([userData, cards]) => {
+    const userID = userData['_id'];
+    updateProfile(userData);
+    renderCards(cards);
 
-/* изменение формата данных 
-const getInputValues = (data) => {
-  return {
-    name: data['place-name'],
-    link: data['place-image']
-  };
-}*/
+    console.log(userID)
+    console.log(userData)
+    console.log(cards)
+  })
 
-/* инициализация полей формы редактирования профиля данными из профайла */
-const initPopupEdit = () => {
-  const data = userInfo.getUserInfo();
-  popupEditUserName.value = data.editUserName;
-  popupEditUserInfo.value = data.editUserInfo; 
-}
 
 /* проверяем, наша ли это карточка */
 const checkOwner = (data) => {
@@ -50,36 +46,44 @@ const checkOwner = (data) => {
 
 /* создание экземпляра новой карточки */
 const createCard = (data) => {
+  const card = new Card(data, '.template-card', () => imagePopup.open(data.name, data.link), {
+    handleDeleteButtonClick: (cardID) => {
+      confirmDeletePopup.open();
+      confirmDeletePopup.changeHandlerFormSubmit(() => {
+        api.deleteCard(cardID)
+          .then(() => {
+            card.deleteCard();
+            confirmDeletePopup.close();
+          })
+      });
+    },
+    handleLikeClick: () => {
+      
+    }
+  });
   const isMyCard = checkOwner(data);
-  const card = new Card(data, '.template-card', () => imagePopup.open(data.name, data.link), handleDeleteButton);
   const newCard = card.createCard(isMyCard);
   return newCard;
 }
 
 /* обновление профиля пользователя данными с сервера */
-const updateProfile = () => {
-  api.getUserInfo()
-    .then(data => {
-      userInfo.setUserInfo(data['name'], data['about']);
-      userInfo.setUserAvatar(data['avatar']);
-      userInfo.setUserID(data['_id']);
-    });
+const updateProfile = (data) => { 
+  userInfo.setUserInfo(data['name'], data['about']);
+  userInfo.setUserAvatar(data['avatar']);
+  userInfo.setUserID(data['_id']);
 }
 
 /* обновление карточной галереи данными с сервера */
-const updateCardGallery = () => {
-  api.getInitialCards()
-  .then(initCards => {
-    const section = new Section({
-      items: initCards,
-      renderer: (item) => {
-        const newCard = createCard(item);
-        section.addItem(newCard);
-      }
-      },
-      cardsContainer);
-      section.renderItems();
-  });
+const renderCards = (cards) => {
+  const section = new Section({
+    items: cards,
+    renderer: (item) => {
+      const newCard = createCard(item);
+      section.addItem(newCard);
+    }
+    },
+    cardsContainer);
+    section.renderItems();
 }
 
 /* создание карточки по данным из полей ввода */
@@ -110,10 +114,11 @@ const handleAvatarUpdateFormSubmit = (data) => {
   avatarUpdatePopup.close();
 }
 
-const handleConfirmFormSubmit = (cardID) => {
-  api.deleteCard(cardID);
-  updateCardGallery();
-  confirmDeletePopup.close();
+/* инициализация полей формы редактирования профиля данными из профайла */
+const initPopupEdit = () => {
+  const data = userInfo.getUserInfo();
+  popupEditUserName.value = data.editUserName;
+  popupEditUserInfo.value = data.editUserInfo; 
 }
 
 const handleButtonEdit = () => {
@@ -135,10 +140,6 @@ const handleAvatarUpdate = () => {
   avatarUpdatePopup.open();
 }
 
-const handleDeleteButton = (cardID) => {
-  confirmDeletePopup.setID(cardID);
-  confirmDeletePopup.open();
-}
 
 /* включение валидации модальных окон */
 popupEditValidator.enableValidation();
@@ -149,17 +150,17 @@ const imagePopup = new PopupWithImage('.popup_role_image-display');
 const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
 const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
 const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit);
-const confirmDeletePopup = new PopupWithEmptyForm('.popup_role_confirm', handleConfirmFormSubmit);
+const confirmDeletePopup = new PopupWithEmptyForm('.popup_role_confirm');
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
 
-updateProfile();
-updateCardGallery();
+//updateProfile();
+//updateCardGallery();
 
 imagePopup.setEventListeners();
 editPopup.setEventListeners();
 createPopup.setEventListeners();
 avatarUpdatePopup.setEventListeners();
-confirmDeletePopup.setEventListeners();
+//confirmDeletePopup.setEventListeners();
 
 profileButtonEdit.addEventListener('click', handleButtonEdit);
 profileButtonAdd.addEventListener('click', handleButtonAdd);
