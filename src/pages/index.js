@@ -153,14 +153,11 @@ const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleA
 const confirmDeletePopup = new PopupWithEmptyForm('.popup_role_confirm');
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
 
-//updateProfile();
-//updateCardGallery();
-
 imagePopup.setEventListeners();
 editPopup.setEventListeners();
 createPopup.setEventListeners();
 avatarUpdatePopup.setEventListeners();
-//confirmDeletePopup.setEventListeners();
+confirmDeletePopup.setEventListeners();
 
 profileButtonEdit.addEventListener('click', handleButtonEdit);
 profileButtonAdd.addEventListener('click', handleButtonAdd);
