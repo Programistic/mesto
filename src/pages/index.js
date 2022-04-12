@@ -49,7 +49,7 @@ const createCard = (data) => {
   const card = new Card(data, '.template-card', () => imagePopup.open(data.name, data.link), {
     handleDeleteButtonClick: (cardID) => {
       confirmDeletePopup.open();
-      confirmDeletePopup.changeHandlerFormSubmit(() => {
+      confirmDeletePopup.handleCardDelete(() => {
         api.deleteCard(cardID)
           .then(() => {
             card.deleteCard();

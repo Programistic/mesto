@@ -8,7 +8,7 @@ export class PopupWithEmptyForm extends Popup {
     this._form = this._popup.querySelector('.form');
   }
 
-  changeHandlerFormSubmit(handleFormSubmit) {
+  handleCardDelete(handleFormSubmit) {
     this._handleFormSubmit = handleFormSubmit;
   }
 
