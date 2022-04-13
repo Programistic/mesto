@@ -31,6 +31,7 @@ Promise.all([api.getProfile(), api.getCards()])
   .then(([userData, cards]) => {
     userID = userData['_id'];
     updateProfile(userData);
+    cards.reverse();
     renderCards(cards);
   })
   .catch((err) => {
