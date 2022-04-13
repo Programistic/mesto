@@ -7,6 +7,7 @@ import { validationConfig } from '../utils/constants.js';
 import { userNameSelector, userInfoSelector, userAvatarSelector, cardsContainer } from '../utils/constants.js';
 import { profileButtonEdit, profileButtonAdd, profileAvatarUpdate } from '../utils/constants.js';
 import { popupEditForm, popupCreateForm, popupAvatarUpdateForm, popupEditUserName, popupEditUserInfo } from '../utils/constants.js';
+import { submitLabelCreate, submitLabelSave } from '../utils/constants.js';
 
 import { Api } from '../components/Api.js';
 import { UserInfo } from '../components/UserInfo.js';
@@ -146,9 +147,9 @@ popupCreateValidator.enableValidation();
 popupAvatarUpdateValidator.enableValidation();
 
 const imagePopup = new PopupWithImage('.popup_role_image-display');
-const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit);
-const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit);
-const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit);
+const editPopup = new PopupWithForm('.popup_role_edit', handleEditFormSubmit, submitLabelSave);
+const createPopup = new PopupWithForm('.popup_role_create', handleCreateFormSubmit, submitLabelCreate);
+const avatarUpdatePopup = new PopupWithForm('.popup_role_avatar-update', handleAvatarUpdateFormSubmit, submitLabelSave);
 const confirmDeletePopup = new PopupWithEmptyForm('.popup_role_confirm');
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector, userAvatarSelector });
 

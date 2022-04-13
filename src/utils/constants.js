@@ -44,44 +44,5 @@ export const validationConfig = {
   errorClass: 'form__input-error_active'
 };
 
-
-/*import algalroboImage from '../images/Алгаллробо.jpg';
-import veronaImage from '../images/Верона.jpg';
-import amsterdamImage from '../images/Амстердам.jpg';
-import badpirmontImage from '../images/Бад-Пирмонт.jpg';
-import matterhornImage from '../images/Маттерхорн.jpg';
-import dombayImage from '../images/Домбай.png';*/
-
-/* массив карточек для вставки на страницу при первой загрузке */
-/*export const initialCards = [
-  {
-    name: 'Альгарробо',
-    link: algalroboImage,
-    alt: 'Деревянный мост в городе Альгарробо в Чили'
-  },
-  {
-    name: 'Верона',
-    link: veronaImage,
-    alt: 'Лес в провинции Верона в Италии'
-  },
-  {
-    name: 'Амстердам',
-    link: amsterdamImage,
-    alt: 'Один из каналов в Амстердаме'
-  },
-  {
-    name: 'Бад-Пирмонт',
-    link: badpirmontImage,
-    alt: 'Лес в окрестностях города Бад-Пирмонт в Германии'
-  },
-  {
-    name: 'Маттерхорн',
-    link: matterhornImage,
-    alt: 'Вид на гору Маттерхорн в Швейцарии'
-  },
-  {
-    name: 'Домбай',
-    link: dombayImage,
-    alt: 'Домбай'
-  }
-];*/
+export const submitLabelCreate = 'Создать';
+export const submitLabelSave = 'Сохранить';

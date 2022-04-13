@@ -1,7 +1,5 @@
 // Api.js, создание класса для работы с API
 
-import { avatarURL } from "../utils/constants";
-
 export class Api {
   constructor(userURL, cardURL, avatarURL, token) {
     this._userURL = userURL;
@@ -153,9 +151,6 @@ export class Api {
     })
       .then((res) => {
         return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then((cardData) => {
-        return cardData;
       })
       .catch((err) => {
         console.log(err);
