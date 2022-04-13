@@ -127,7 +127,38 @@ export class Api {
       });
   }
 
-  setLike() {
-    
+  addLike(cardID) {
+    return fetch(this._cardURL + `/${cardID}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  deleteLike(cardID) {
+    return fetch(this._cardURL + `/${cardID}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
+      })
+      .then((cardData) => {
+        return cardData;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
