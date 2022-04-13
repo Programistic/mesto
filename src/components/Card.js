@@ -40,8 +40,10 @@ export class Card {
       this._likeButton.classList.add('card__like_liked');
     }
 
+    this.displayNumberLikes(this._likes);
+
     this._setEventListeners();
-    
+
     return this._card;
   };
 

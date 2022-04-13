@@ -33,6 +33,9 @@ Promise.all([api.getProfile(), api.getCards()])
     updateProfile(userData);
     renderCards(cards);
   })
+  .catch((err) => {
+    console.log(err);
+  });
 
 /* обновление профиля пользователя данными с сервера */
 const updateProfile = (data) => { 
@@ -64,6 +67,9 @@ const createCard = (data) => {
             card.deleteCard();
             confirmDeletePopup.close();
           })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     },
     handleLikeClick: (cardID, isLiked) => {
@@ -73,17 +79,22 @@ const createCard = (data) => {
             card.displayNumberLikes(data.likes);
             card.toggleLike();
           })
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
         api.deleteLike(cardID)
           .then((data) => {
             card.displayNumberLikes(data.likes);
             card.toggleLike();
           })
+          .catch((err) => {
+            console.log(err);
+          });
       } 
     }
   });
   const newCard = card.createCard();
-  card.displayNumberLikes(data.likes);
   return newCard;
 }
 
@@ -93,8 +104,11 @@ const handleCreateFormSubmit = (data) => {
     .then(data => {
       const newCard = createCard(data);
       cardsContainer.prepend(newCard);
-    }); 
-  createPopup.close();
+      createPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 /* установка в профайл новых даннных пользователя из полей ввода */
@@ -102,8 +116,11 @@ const handleEditFormSubmit = (data) => {
   api.setUserInfo(data)
     .then(userData => {
       userInfo.setUserInfo(userData['name'], userData['about']);
+      editPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  editPopup.close();
 }
 
 /* обновление аватара пользователя */
@@ -111,8 +128,11 @@ const handleAvatarUpdateFormSubmit = (data) => {
   api.setAvatar(data)
     .then(avatarData => {
       userInfo.setUserAvatar(avatarData['avatar']);
+      avatarUpdatePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  avatarUpdatePopup.close();
 }
 
 /* инициализация полей формы редактирования профиля данными из профайла */

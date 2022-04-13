@@ -14,15 +14,7 @@ export class Api {
         authorization: this._token
       }
     })
-      .then(res => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then(data => {
-        return data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res));
   }
 
   getCards() {
@@ -31,15 +23,7 @@ export class Api {
         authorization: this._token
       }
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then((initialCards) => {
-        return initialCards;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res))
   }
 
   setUserInfo(userData) {
@@ -54,15 +38,7 @@ export class Api {
         about: userData['user-info']
       })
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then(userData => {
-        return userData;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res))
   }
 
   setAvatar(avatarData) {
@@ -76,15 +52,7 @@ export class Api {
         avatar: avatarData['avatar-image']
       })
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then(avatarData => {
-        return avatarData;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res))
   }
 
   setCard(cardData) {
@@ -99,15 +67,7 @@ export class Api {
         link: cardData['place-image']
       })
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .then((cardData) => {
-        return cardData;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res))
   }
 
   deleteCard(cardID) {
@@ -117,12 +77,7 @@ export class Api {
         authorization: this._token
       }
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res));
   }
 
   addLike(cardID) {
@@ -133,12 +88,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res));
   }
 
   deleteLike(cardID) {
@@ -149,11 +99,10 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(res => this._getResponseData(res));
+  }
+
+  _getResponseData(res) {
+    return res.ok ? res.json() : Promise.reject(`Error ${res.status}`)
   }
 }
