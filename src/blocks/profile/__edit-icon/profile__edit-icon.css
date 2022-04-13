@@ -11,7 +11,7 @@
 .profile__edit-icon:hover {
   cursor: pointer;
   background: url(../../../images/edit.svg) center no-repeat rgba(0, 0, 0, .8);
-  background-size: 26px 26px; 
+  background-size: 26px 26px;
   opacity: 1;
 }
 
