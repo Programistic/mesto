@@ -24,6 +24,7 @@ const popupCreateValidator = new FormValidator(validationConfig, popupCreateForm
 const popupAvatarUpdateValidator = new FormValidator(validationConfig, popupAvatarUpdateForm);
 
 const api = new Api(userURL, cardURL, avatarURL, token);
+const section = new Section({ items: [], renderer: () => {} }, cardsContainer);
 
 let userID;
 
@@ -32,7 +33,10 @@ Promise.all([api.getProfile(), api.getCards()])
     userID = userData['_id'];
     updateProfile(userData);
     cards.reverse();
-    renderCards(cards);
+    cards.forEach((item) => {
+      const newCard = createCard(item);
+      section.addItem(newCard);
+    })
   })
   .catch((err) => {
     console.log(err);
@@ -42,19 +46,6 @@ Promise.all([api.getProfile(), api.getCards()])
 const updateProfile = (data) => { 
   userInfo.setUserInfo(data['name'], data['about']);
   userInfo.setUserAvatar(data['avatar']);
-}
-
-/* отрисовка карточной галереи данными с сервера */
-const renderCards = (cards) => {
-  const section = new Section({
-    items: cards,
-    renderer: (item) => {
-      const newCard = createCard(item);
-      section.addItem(newCard);
-    }
-    },
-    cardsContainer);
-    section.renderItems();
 }
 
 /* создание экземпляра новой карточки */
@@ -104,7 +95,7 @@ const handleCreateFormSubmit = (data) => {
   api.setCard(data)
     .then(data => {
       const newCard = createCard(data);
-      cardsContainer.prepend(newCard);
+      section.addItem(newCard);
       createPopup.close();
     })
     .catch((err) => {
