@@ -1,19 +1,30 @@
-# Одностраничный сайт "Место"
+### One-page adaptive interactive website "Mesto"
 
-### https://programistic.github.io/mesto/
+#### About
+It is training project from Yandex.Praktikum
 
-### Учебный проект от Яндекс-Практикум
+#### Project functionality
+One-page adaptive interactive website, where user can create a profile, post their<br>
+favorite photos and rate other users' photos with likes. The purpose of the site is<br>
+to gain skills in the use of technology Flex, Grid, BEM, JavaScript, OOP, form validation.
 
-##### Функциональность:
-Сайт позволяет пользователю сохранять фотографии, удалять их и ставить лайки.
-
-##### Используемые технологии:
-- БЭМ
-- Flex Layout
-- Grid Layout
-- Адаптивная и 'резиновая' вёрстка
+#### Technology stack
+- HTML5
+- CSS3
+- BEM
+- Flex
+- Grid
 - JavaScript
+- OOP
 - Webpack
+- Babel
 
-##### Планы по доработке проекта:
-- Сделать апгрейд проекта на React
+#### Deploy on gh-pages
+- $ npm run build
+- $ npm run deploy
+
+#### Website link
+- https://programistic.github.io/mesto/
+
+#### Plan to improve
+Make this project on React
